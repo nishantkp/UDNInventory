@@ -1,0 +1,288 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/myCoordinatorLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#FFFFFF"
+        android:orientation="vertical">
+
+        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="16dp">
+
+                <ImageView
+                    android:id="@+id/item_editor_item_thumbnail"
+                    android:layout_width="150dp"
+                    android:layout_height="150dp"
+                    android:layout_alignParentTop="true"
+                    android:layout_centerHorizontal="true"
+                    android:contentDescription="@string/editor_item_description_for_image"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/placeholder" />
+
+                <Button
+                    android:id="@+id/item_editor_take_photo"
+                    android:layout_width="150dp"
+                    android:layout_height="25dp"
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerHorizontal="true"
+                    android:background="@color/categoryTitle"
+                    android:gravity="center"
+                    android:text="Edit"
+                    android:textAllCaps="false"
+                    android:textColor="@android:color/white"
+                    android:textSize="14sp" />
+            </RelativeLayout>
+
+            <TextView
+                style="@style/editor_activity_section_divider"
+                android:text="Product" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/dividerLine" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingLeft="26dp"
+                android:paddingRight="12dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:paddingBottom="8dp"
+                    android:paddingTop="16dp">
+
+                    <TextView
+                        android:id="@+id/textView"
+                        style="@style/editor_activity_attributes_text_style"
+                        android:text="name" />
+
+                    <EditText
+                        android:id="@+id/item_editor_item_name"
+                        style="@style/editor_activity_edit_text_style"
+                        android:hint="Tomato"
+                        android:inputType="textCapWords|textNoSuggestions" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:paddingBottom="8dp"
+                    android:paddingTop="8dp">
+
+                    <TextView
+                        android:id="@+id/textView3"
+                        style="@style/editor_activity_attributes_text_style"
+                        android:text="price" />
+
+                    <RelativeLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="4">
+
+                        <EditText
+                            android:id="@+id/item_editor_item_price"
+                            style="@style/editor_activity_price_edit_text_style"
+                            android:layout_marginLeft="12dp"
+                            android:hint="24.99"
+                            android:inputType="numberDecimal" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentLeft="true"
+                            android:layout_centerVertical="true"
+                            android:text="$"
+                            android:textAppearance="?android:textAppearanceSmall"
+                            android:textColor="@color/secondaryTextColor" />
+                    </RelativeLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:paddingBottom="8dp"
+                    android:paddingTop="8dp">
+
+                    <TextView
+                        style="@style/editor_activity_attributes_text_style"
+                        android:text="quantity" />
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="4">
+
+                        <Button
+                            android:id="@+id/item_editor_decrease_quantity"
+                            style="@style/editor_activity_quantity_modification_style"
+                            android:drawableLeft="@drawable/ic_remove_circle_outline_black_24dp"
+                            android:drawableTint="@color/colorAccent" />
+
+                        <EditText
+                            android:id="@+id/item_editor_item_quantity"
+                            style="@style/editor_activity_quantity_edit_text_style"
+                            android:layout_weight="1"
+                            android:hint="24"
+                            android:inputType="number" />
+
+                        <Button
+                            android:id="@+id/item_editor_increase_quantity"
+                            style="@style/editor_activity_quantity_modification_style"
+                            android:drawableLeft="@drawable/ic_add_circle_black_24dp"
+                            android:drawableTint="@color/colorAccent" />
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+
+            <TextView
+                style="@style/editor_activity_section_divider"
+                android:text="Supplier" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/dividerLine" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="26dp"
+                android:layout_marginLeft="26dp"
+                android:layout_marginRight="12dp"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:paddingBottom="8dp"
+                    android:paddingTop="16dp">
+
+                    <TextView
+                        style="@style/editor_activity_attributes_text_style"
+                        android:text="name" />
+
+                    <EditText
+                        android:id="@+id/item_editor_supplier_name"
+                        style="@style/editor_activity_edit_text_style"
+                        android:hint="Management Inc."
+                        android:inputType="textCapWords|textNoSuggestions" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:paddingBottom="8dp"
+                    android:paddingTop="8dp">
+
+                    <TextView
+                        style="@style/editor_activity_attributes_text_style"
+                        android:text="phone" />
+
+                    <EditText
+                        android:id="@+id/item_editor_supplier_contact"
+                        style="@style/editor_activity_edit_text_style"
+                        android:hint="(123)456-9639"
+                        android:inputType="phone" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:paddingBottom="8dp"
+                    android:paddingTop="8dp">
+
+                    <TextView
+                        style="@style/editor_activity_attributes_text_style"
+                        android:text="email" />
+
+                    <EditText
+                        android:id="@+id/item_editor_supplier_email"
+                        style="@style/editor_activity_edit_text_style"
+                        android:hint="you@example.com"
+                        android:inputType="textWebEmailAddress" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/dividerLine" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/placeOrderBackground"
+                    android:orientation="horizontal"
+                    android:paddingBottom="4dp"
+                    android:paddingLeft="16dp"
+                    android:paddingRight="16dp"
+                    android:paddingTop="4dp">
+
+                    <EditText
+                        android:id="@+id/item_editor_new_order_quantity"
+                        style="@style/editor_activity_new_order_editText"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:fontFamily="sans-serif-light"
+                        android:hint="Quantity" />
+
+                    <Button
+                        android:id="@+id/item_editor_place_order"
+                        style="@style/editor_activity_place_order_button"
+                        android:fontFamily="sans-serif"
+                        android:text="place" />
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/dividerLine" />
+
+                <FrameLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="36dp"
+                    android:layout_gravity="center"
+                    android:layout_marginBottom="26dp"
+                    android:layout_marginTop="26dp"
+                    android:background="@drawable/delete_textview_border">
+
+                    <TextView
+                        android:id="@+id/item_editor_delete_item"
+                        style="@style/editor_activity_delete_button"
+                        android:background="?android:attr/selectableItemBackground"
+                        android:fontFamily="sans-serif-medium"
+                        android:text="Delete Item" />
+                </FrameLayout>
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+</android.support.design.widget.CoordinatorLayout>

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@android:color/white"
+    android:orientation="horizontal"
+    android:paddingRight="20dp">
+
+    <Button
+        android:id="@+id/list_item_item_decrease_quantity_button"
+        style="@style/catalog_activity_button_style"
+        android:background="?android:attr/selectableItemBackground"
+        android:drawableLeft="@drawable/ic_shopping_cart_black_24dp"
+        android:drawableTint="@color/colorAccent"
+        android:focusable="false" />
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:gravity="center_vertical"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/list_item_item_name"
+            style="@style/catalog_activity_product_name"
+            android:paddingBottom="2dp"
+            android:paddingTop="2dp"
+            tools:text="Addidas Collection" />
+
+        <TextView
+            android:id="@+id/list_item_item_price"
+            style="@style/catalog_activity_product_price"
+            tools:text="$259.99" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/list_item_item_quantity"
+        style="@style/catalog_activity_product_quantity"
+        tools:text="155" />
+
+    <ImageView
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_gravity="center"
+        android:layout_marginLeft="16dp"
+        android:src="@drawable/ic_info_outline_black_24dp"
+        android:tint="@color/colorAccent" />
+</LinearLayout>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/new_item_add"
+        android:icon="@drawable/add_white"
+        android:title="@string/catalog_menu_add_item_title"
+        app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/add_dummy_data"
+        android:title="Dummy Data"
+        app:showAsAction="never" />
+</menu>

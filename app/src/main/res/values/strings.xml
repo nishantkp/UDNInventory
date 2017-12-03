@@ -1,0 +1,69 @@
+<resources>
+    <string name="app_name">Inventory</string>
+
+    <!-- Title for the activity to delete an item [CHAR LIMIT=20] -->
+    <string name="editor_menu_delete_title">Delete</string>
+
+    <!-- Title for the activity to save a new item [CHAR LIMIT=20] -->
+    <string name="editor_menu_save_title">Done</string>
+
+    <!-- Title for the activity to delete all data from database [CHAR LIMIT=20] -->
+    <string name="catalog_menu_delete_title">Delete All</string>
+
+    <!-- Title for the activity to add a new item [CHAR LIMIT=20] -->
+    <string name="catalog_menu_add_item_title">Add Item</string>
+
+    <!-- Toast message for error saving item [CHAR LIMIT=20] -->
+    <string name="error_saving_item">Error saving item</string>
+
+    <!-- Toast message for successfully updating item [CHAR LIMIT=20] -->
+    <string name="successful_updating_item">Item updated</string>
+
+    <!-- Toast message for error updating item [CHAR LIMIT=20] -->
+    <string name="error_updating_item">Error updating item</string>
+
+    <!-- Toast message for successfully saving item [CHAR LIMIT=20] -->
+    <string name="successful_saving_item">Item saved</string>
+
+    <!-- Title for EditorActivity for adding a new Item [CHAR LIMIT=20]-->
+    <string name="title_editor_activity_new_item">Add Item</string>
+
+    <!-- Title for EditorActivity for editing a new pet [CHAR LIMIT=20]-->
+    <string name="title_editor_activity_edit_item">Edit item</string>
+
+    <!-- Message for alert dialog in editor activity for deleting item [CHAR LIMIT=20] -->
+    <string name="editor_alert_dialog_delete_item_message">Delete this item?</string>
+
+    <!-- Positive button for alert dialog in editor activity of deleting item [CHAR LIMIT=20] -->
+    <string name="editor_alert_dialog_delete_positive_button">Delete</string>
+
+    <!-- Negative button for alert dialog in editor activity for canceling the dialog [CHAR LIMIT=20]-->
+    <string name="editor_alert_dialog_delete_negative_button">Cancel</string>
+
+    <!-- Message for alert dialog in editor activity for unsaved changes [CHAR LIMIT=20]-->
+    <string name="editor_alert_dialog_unsaved_changes_message">Discard changes and quit editing?</string>
+
+    <!-- Positive button for alert dialog in editor activity for unsaved changes dialog [CHAR LIMIT=20]-->
+    <string name="editor_alert_dialog_unsaved_changes_positive_button">Discard</string>
+
+    <!-- Negative button for alert dialog in editor activity for unsaved changes dialog [CHAR LIMIT=20]-->
+    <string name="editor_alert_dialog_unsaved_changes_negative_button">Keep editing</string>
+
+    <!-- Message for snackBar in editor activity for no supplier email and item quantity for placing an order [CHAR LIMIT=40] -->
+    <string name="editor_snackBar_no_supplier_email_no_quantity">No supplier email and item quantity</string>
+
+    <!-- Message for snackBar in editor activity for no supplier email for placing an order [CHAR LIMIT=30] -->
+    <string name="editor_snackBar_no_supplier_email">No supplier email</string>
+
+    <!-- Message for snackBar in editor activity for no item quantity for placing an order [CHAR LIMIT=30] -->
+    <string name="editor_snackBar_no_item_quantity">No item quantity</string>
+
+    <!-- Content description of item image in editor activity [CHAR LIMIT=20] -->
+    <string name="editor_item_description_for_image">Item image</string>
+
+    <!-- Message for snackBar in home screen for ordering an item [CHAR LIMIT=30] -->
+    <string name="catalog_make_an_order_for_item_snackBar">Make an order for</string>
+
+    <!-- Action button for snackBar in home screen for ordering an item [CHAR LIMIT=20] -->
+    <string name="catalog_make_an_order_snackBar_action_button">order</string>
+</resources>
