@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.support.design.widget.Snackbar;
 import android.support.v4.content.ContextCompat;
 import android.view.LayoutInflater;
@@ -145,12 +146,20 @@ public class ItemCursorAdapter extends CursorAdapter {
                     snackbar.show();
                 }
 
-                // Create a new content value object for itemQuantity
-                ContentValues contentValues = new ContentValues();
-                contentValues.put(ItemEntry.COLUMN_ITEM_QUANTITY, itemQuantity);
-
-                // Update the database for just item quantity
-                mContext.getContentResolver().update(currentItemUri, contentValues, null, null);
+                final Integer finalItemQuantity = itemQuantity;
+                // Update database for newly updated quantity in background thread
+                // to minimize memory operation on UI thread
+                AsyncTask.execute(new Runnable() {
+                    @Override
+                    public void run() {
+                        // Create a new content value object for itemQuantity
+                        ContentValues contentValues = new ContentValues();
+                        contentValues.put(ItemEntry.COLUMN_ITEM_QUANTITY, finalItemQuantity);
+                        // Update the database for just item quantity
+                        mContext.getContentResolver()
+                                .update(currentItemUri, contentValues, null, null);
+                    }
+                });
 
                 // Set the text in quantity field
                 itemQuantityTextView.setText(itemQuantity + "");
