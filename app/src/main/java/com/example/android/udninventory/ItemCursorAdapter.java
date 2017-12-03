@@ -97,7 +97,7 @@ public class ItemCursorAdapter extends CursorAdapter {
         // Update the TextViews with the current item
         itemNameTextView.setText(itemName);
         itemPriceTextView.setText("$ " + itemPrice);
-        itemQuantityTextView.setText(itemQuantity + "");
+        itemQuantityTextView.setText(String.valueOf(itemQuantity));
 
         // Append id of a row in table with {@link ItemEntry#CONTENT_URI} to generate a appropriate
         // uri to update a database at given id, when user clicks decrease button
@@ -162,7 +162,7 @@ public class ItemCursorAdapter extends CursorAdapter {
                 });
 
                 // Set the text in quantity field
-                itemQuantityTextView.setText(itemQuantity + "");
+                itemQuantityTextView.setText(String.valueOf(itemQuantity));
             }
         });
     }
