@@ -24,6 +24,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -190,9 +191,10 @@ public class EditorActivity extends AppCompatActivity
 
         // Find the TextView for deleting item
         final TextView deleteItemTextView = (TextView) findViewById(R.id.item_editor_delete_item);
+        FrameLayout deleteFrame = findViewById(R.id.item_editor_delete_item_frame);
         if (mCurrentItemUri == null) {
-            // If it's new item hide the delete item button
-            deleteItemTextView.setVisibility(View.GONE);
+            // If it's a new Item then hide the while frame of Delete button
+            deleteFrame.setVisibility(View.GONE);
         } else {
             // Otherwise warn for deleting item
             deleteItemTextView.setOnClickListener(new View.OnClickListener() {
