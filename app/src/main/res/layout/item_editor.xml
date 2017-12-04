@@ -20,12 +20,12 @@
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingTop="16dp">
+                android:paddingTop="@dimen/editor_default_margin_padding">
 
                 <ImageView
                     android:id="@+id/item_editor_item_thumbnail"
-                    android:layout_width="150dp"
-                    android:layout_height="150dp"
+                    android:layout_width="@dimen/editor_image_height"
+                    android:layout_height="@dimen/editor_image_height"
                     android:layout_alignParentTop="true"
                     android:layout_centerHorizontal="true"
                     android:contentDescription="@string/editor_item_description_for_image"
@@ -34,8 +34,8 @@
 
                 <Button
                     android:id="@+id/item_editor_take_photo"
-                    android:layout_width="150dp"
-                    android:layout_height="25dp"
+                    android:layout_width="@dimen/editor_image_height"
+                    android:layout_height="@dimen/editor_image_capture_button_height"
                     android:layout_alignParentBottom="true"
                     android:layout_centerHorizontal="true"
                     android:background="@color/categoryTitle"
@@ -43,7 +43,7 @@
                     android:text="Edit"
                     android:textAllCaps="false"
                     android:textColor="@color/primaryWhiteColor"
-                    android:textSize="14sp" />
+                    android:textSize="@dimen/secondary_text_size" />
             </RelativeLayout>
 
             <TextView
@@ -59,15 +59,15 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:paddingLeft="26dp"
-                android:paddingRight="12dp">
+                android:paddingLeft="@dimen/editor_section_margin_left"
+                android:paddingRight="@dimen/editor_section_margin_right">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
-                    android:paddingBottom="8dp"
-                    android:paddingTop="16dp">
+                    android:paddingBottom="@dimen/editor_attributes_default_padding"
+                    android:paddingTop="@dimen/editor_default_margin_padding">
 
                     <TextView
                         android:id="@+id/textView"
@@ -85,8 +85,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
-                    android:paddingBottom="8dp"
-                    android:paddingTop="8dp">
+                    android:paddingBottom="@dimen/editor_attributes_default_padding"
+                    android:paddingTop="@dimen/editor_attributes_default_padding">
 
                     <TextView
                         android:id="@+id/textView3"
@@ -120,8 +120,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
-                    android:paddingBottom="8dp"
-                    android:paddingTop="8dp">
+                    android:paddingBottom="@dimen/editor_attributes_default_padding"
+                    android:paddingTop="@dimen/editor_attributes_default_padding">
 
                     <TextView
                         style="@style/editor_activity_attributes_text_style"
@@ -157,8 +157,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
-                    android:paddingBottom="8dp"
-                    android:paddingTop="8dp">
+                    android:paddingBottom="@dimen/editor_attributes_default_padding"
+                    android:paddingTop="@dimen/editor_attributes_default_padding">
 
                     <TextView
                         style="@style/editor_activity_attributes_text_style"
@@ -184,17 +184,17 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="26dp"
-                android:layout_marginLeft="26dp"
-                android:layout_marginRight="12dp"
+                android:layout_marginBottom="@dimen/editor_section_margin_bottom"
+                android:layout_marginLeft="@dimen/editor_section_margin_left"
+                android:layout_marginRight="@dimen/editor_section_margin_right"
                 android:orientation="vertical">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
-                    android:paddingBottom="8dp"
-                    android:paddingTop="16dp">
+                    android:paddingBottom="@dimen/editor_attributes_default_padding"
+                    android:paddingTop="@dimen/editor_default_margin_padding">
 
                     <TextView
                         style="@style/editor_activity_attributes_text_style"
@@ -211,8 +211,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
-                    android:paddingBottom="8dp"
-                    android:paddingTop="8dp">
+                    android:paddingBottom="@dimen/editor_attributes_default_padding"
+                    android:paddingTop="@dimen/editor_attributes_default_padding">
 
                     <TextView
                         style="@style/editor_activity_attributes_text_style"
@@ -229,8 +229,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
-                    android:paddingBottom="8dp"
-                    android:paddingTop="8dp">
+                    android:paddingBottom="@dimen/editor_attributes_default_padding"
+                    android:paddingTop="@dimen/editor_attributes_default_padding">
 
                     <TextView
                         style="@style/editor_activity_attributes_text_style"
@@ -259,10 +259,10 @@
                     android:layout_height="wrap_content"
                     android:background="@color/placeOrderBackground"
                     android:orientation="horizontal"
-                    android:paddingBottom="4dp"
-                    android:paddingLeft="16dp"
-                    android:paddingRight="16dp"
-                    android:paddingTop="4dp">
+                    android:paddingBottom="@dimen/editor_place_order_padding_bottom"
+                    android:paddingLeft="@dimen/editor_default_margin_padding"
+                    android:paddingRight="@dimen/editor_default_margin_padding"
+                    android:paddingTop="@dimen/editor_place_order_padding_top">
 
                     <EditText
                         android:id="@+id/item_editor_new_order_quantity"
@@ -288,10 +288,10 @@
                 <FrameLayout
                     android:id="@+id/item_editor_delete_item_frame"
                     android:layout_width="wrap_content"
-                    android:layout_height="36dp"
+                    android:layout_height="@dimen/editor_delete_button_height"
                     android:layout_gravity="center"
-                    android:layout_marginBottom="26dp"
-                    android:layout_marginTop="26dp"
+                    android:layout_marginBottom="@dimen/editor_delete_frame_view_margin"
+                    android:layout_marginTop="@dimen/editor_delete_frame_view_margin"
                     android:background="@drawable/delete_textview_border">
 
                     <TextView

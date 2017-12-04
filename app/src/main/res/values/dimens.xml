@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Text Sizes through out app -->
+    <dimen name="overview_item_title_text_size">26sp</dimen>
+    <dimen name="primary_text_size">16sp</dimen>
+    <dimen name="secondary_text_size">14sp</dimen>
+    <dimen name="default_text_size">12sp</dimen>
+
+    <!-- View height (separator) through out app -->
+    <dimen name="view_height">1dp</dimen>
+
+    <!--Editor activity dimensions -->
+    <dimen name="editor_image_height">150dp</dimen>
+    <dimen name="editor_image_capture_button_height">25dp</dimen>
+    <dimen name="editor_attributes_default_padding">8dp</dimen>
+    <dimen name="editor_attributes_name_width">70dp</dimen>
+    <dimen name="editor_default_margin_padding">16dp</dimen>
+    <dimen name="editor_section_margin_bottom">26dp</dimen>
+    <dimen name="editor_section_margin_left">26dp</dimen>
+    <dimen name="editor_section_margin_right">12dp</dimen>
+    <dimen name="editor_place_order_padding_top">4dp</dimen>
+    <dimen name="editor_place_order_padding_bottom">4dp</dimen>
+    <dimen name="editor_new_order_edit_text_padding">6dp</dimen>
+    <dimen name="editor_place_order_button_padding">12dp</dimen>
+    <dimen name="editor_place_order_button_margin">8dp</dimen>
+    <dimen name="editor_section_divider_padding_left">12dp</dimen>
+    <dimen name="editor_section_divider_padding_top">8dp</dimen>
+    <dimen name="editor_section_divider_padding_bottom">8dp</dimen>
+    <dimen name="editor_section_divider_margin_top">12dp</dimen>
+    <dimen name="editor_delete_frame_view_margin">26dp</dimen>
+    <dimen name="editor_delete_button_height">36dp</dimen>
+    <dimen name="editor_delete_button_padding_left_right">60dp</dimen>
+    <dimen name="editor_delete_button_padding_top_bottom">8dp</dimen>
+    <dimen name="editor_quantity_modification_button_padding">10dp</dimen>
+    <dimen name="editor_quantity_modification_button_margin">12dp</dimen>
+
+    <!-- Overview activity dimensions -->
+    <dimen name="overview_padding_top">26dp</dimen>
+    <dimen name="overview_padding_bottom">26dp</dimen>
+    <dimen name="overview_image_height">100dp</dimen>
+    <dimen name="overview_default_margin_padding">16dp</dimen>
+    <dimen name="overview_category_name_default_margin">26dp</dimen>
+    <dimen name="overview_category_name_padding">8dp</dimen>
+    <dimen name="overview_attributes_width">50dp</dimen>
+    <dimen name="overview_attributes_default_margin_padding">26dp</dimen>
+    <dimen name="overview_attributes_padding">4dp</dimen>
+    <dimen name="overview_supplier_title_margin_bottom">8dp</dimen>
+    <dimen name="overview_quantity_price_padding_bottom">8dp</dimen>
+
+    <!-- List item dimensions -->
+    <dimen name="list_item_padding_right">20dp</dimen>
+    <dimen name="list_item_icon_height">20dp</dimen>
+    <dimen name="list_item_icon_margin_left">16dp</dimen>
+    <dimen name="list_item_category_padding">4dp</dimen>
+    <dimen name="list_item_category_margin">16dp</dimen>
+    <dimen name="list_item_item_name_padding">2dp</dimen>
+    <dimen name="list_item_button_padding">20dp</dimen>
+    <dimen name="list_item_button_margin">5dp</dimen>
+</resources>

@@ -20,8 +20,8 @@
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_gravity">center</item>
-        <item name="android:padding">20dp</item>
-        <item name="android:layout_margin">5dp</item>
+        <item name="android:padding">@dimen/list_item_button_padding</item>
+        <item name="android:layout_margin">@dimen/list_item_button_margin</item>
         <item name="android:minHeight">0dp</item>
         <item name="android:minWidth">0dp</item>
     </style>
@@ -29,7 +29,7 @@
     <!-- Catalog activity Product name style-->
     <style name="catalog_activity_product_name">
         <item name="android:fontFamily">sans-serif-medium</item>
-        <item name="android:textSize">16sp</item>
+        <item name="android:textSize">@dimen/primary_text_size</item>
         <item name="android:ellipsize">end</item>
         <item name="android:maxLines">1</item>
         <item name="android:textColor">@color/primaryTextColor</item>
@@ -40,7 +40,7 @@
     <!-- Catalog activity Product price style-->
     <style name="catalog_activity_product_price">
         <item name="android:fontFamily">sans-serif-light</item>
-        <item name="android:textSize">14sp</item>
+        <item name="android:textSize">@dimen/secondary_text_size</item>
         <item name="android:ellipsize">end</item>
         <item name="android:maxLines">1</item>
         <item name="android:textColor">@color/secondaryTextColor</item>
@@ -63,12 +63,12 @@
     <style name="editor_activity_section_divider">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:layout_marginTop">12dp</item>
+        <item name="android:layout_marginTop">@dimen/editor_section_divider_margin_top</item>
         <item name="android:layout_marginBottom">0dp</item>
-        <item name="android:paddingTop">8dp</item>
-        <item name="android:paddingBottom">8dp</item>
-        <item name="android:paddingLeft">12dp</item>
-        <item name="android:textSize">14sp</item>
+        <item name="android:paddingTop">@dimen/editor_section_divider_padding_top</item>
+        <item name="android:paddingBottom">@dimen/editor_section_divider_padding_bottom</item>
+        <item name="android:paddingLeft">@dimen/editor_section_divider_padding_left</item>
+        <item name="android:textSize">@dimen/secondary_text_size</item>
         <item name="android:textColor">@color/categoryTitle</item>
         <item name="android:textAllCaps">false</item>
         <item name="android:fontFamily">sans-serif-medium</item>
@@ -76,11 +76,11 @@
 
     <!-- Editor activity attributes name style-->
     <style name="editor_activity_attributes_text_style">
-        <item name="android:layout_width">70dp</item>
+        <item name="android:layout_width">@dimen/editor_attributes_name_width</item>
         <item name="android:layout_height">match_parent</item>
         <item name="android:fontFamily">sans-serif-medium</item>
         <item name="android:gravity">center_vertical</item>
-        <item name="android:textSize">14sp</item>
+        <item name="android:textSize">@dimen/secondary_text_size</item>
         <item name="android:textColor">@color/primaryTextColor</item>
     </style>
 
@@ -123,24 +123,24 @@
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_gravity">bottom</item>
-        <item name="android:layout_marginLeft">12dp</item>
-        <item name="android:layout_marginRight">12dp</item>
+        <item name="android:layout_marginLeft">@dimen/editor_quantity_modification_button_margin</item>
+        <item name="android:layout_marginRight">@dimen/editor_quantity_modification_button_margin</item>
         <item name="android:minHeight">0dp</item>
         <item name="android:minWidth">0dp</item>
-        <item name="android:padding">10dp</item>
+        <item name="android:padding">@dimen/editor_quantity_modification_button_padding</item>
         <item name="android:background">@null</item>
     </style>
 
     <!-- Editor activity delete item button style -->
     <style name="editor_activity_delete_button">
         <item name="android:layout_width">wrap_content</item>
-        <item name="android:layout_height">36dp</item>
+        <item name="android:layout_height">@dimen/editor_delete_button_height</item>
         <item name="android:gravity">center</item>
-        <item name="android:paddingBottom">8dp</item>
-        <item name="android:paddingLeft">60dp</item>
-        <item name="android:paddingRight">60dp</item>
-        <item name="android:paddingTop">8dp</item>
-        <item name="android:textSize">14sp</item>
+        <item name="android:paddingBottom">@dimen/editor_delete_button_padding_top_bottom</item>
+        <item name="android:paddingLeft">@dimen/editor_delete_button_padding_left_right</item>
+        <item name="android:paddingRight">@dimen/editor_delete_button_padding_left_right</item>
+        <item name="android:paddingTop">@dimen/editor_delete_button_padding_top_bottom</item>
+        <item name="android:textSize">@dimen/secondary_text_size</item>
         <item name="android:textColor">@android:color/white</item>
     </style>
 
@@ -149,16 +149,16 @@
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_gravity">center</item>
-        <item name="android:layout_marginBottom">8dp</item>
-        <item name="android:layout_marginLeft">8dp</item>
-        <item name="android:layout_marginTop">8dp</item>
+        <item name="android:layout_marginBottom">@dimen/editor_place_order_button_margin</item>
+        <item name="android:layout_marginLeft">@dimen/editor_place_order_button_margin</item>
+        <item name="android:layout_marginTop">@dimen/editor_place_order_button_margin</item>
         <item name="android:gravity">center</item>
-        <item name="android:paddingTop">12dp</item>
-        <item name="android:paddingLeft">12dp</item>
-        <item name="android:paddingBottom">12dp</item>
+        <item name="android:paddingTop">@dimen/editor_place_order_button_padding</item>
+        <item name="android:paddingLeft">@dimen/editor_place_order_button_padding</item>
+        <item name="android:paddingBottom">@dimen/editor_place_order_button_padding</item>
         <item name="android:textAllCaps">true</item>
         <item name="android:textColor">@color/categoryTitle</item>
-        <item name="android:textSize">14sp</item>
+        <item name="android:textSize">@dimen/secondary_text_size</item>
         <item name="android:textStyle">bold</item>
         <item name="android:minHeight">0dp</item>
         <item name="android:minWidth">0dp</item>
@@ -171,7 +171,7 @@
         <item name="android:background">@drawable/border_editor_activity_place_order</item>
         <item name="android:gravity">center</item>
         <item name="android:inputType">number</item>
-        <item name="android:padding">6dp</item>
+        <item name="android:padding">@dimen/editor_new_order_edit_text_padding</item>
         <item name="android:textAppearance">?android:textAppearanceMedium</item>
     </style>
 </resources>

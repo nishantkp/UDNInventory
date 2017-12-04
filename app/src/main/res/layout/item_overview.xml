@@ -9,7 +9,7 @@
         android:layout_height="match_parent"
         android:background="@color/primaryWhiteColor"
         android:orientation="vertical"
-        android:paddingBottom="26dp">
+        android:paddingBottom="@dimen/overview_padding_bottom">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -18,10 +18,10 @@
 
             <ImageView
                 android:id="@+id/item_overview_item_thumbnail"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
+                android:layout_width="@dimen/overview_image_height"
+                android:layout_height="@dimen/overview_image_height"
                 android:layout_gravity="center"
-                android:layout_margin="16dp"
+                android:layout_margin="@dimen/overview_default_margin_padding"
                 android:scaleType="centerCrop"
                 tools:src="@drawable/placeholder" />
 
@@ -31,12 +31,12 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical|center|center_horizontal"
                 android:fontFamily="sans-serif-medium"
-                android:paddingBottom="26dp"
-                android:paddingLeft="16dp"
-                android:paddingRight="16dp"
-                android:paddingTop="26dp"
+                android:paddingBottom="@dimen/overview_padding_bottom"
+                android:paddingLeft="@dimen/overview_default_margin_padding"
+                android:paddingRight="@dimen/overview_default_margin_padding"
+                android:paddingTop="@dimen/overview_padding_top"
                 android:textColor="@color/overviewTextTitle"
-                android:textSize="26sp"
+                android:textSize="@dimen/overview_item_title_text_size"
                 tools:text="Item Name" />
 
         </LinearLayout>
@@ -44,31 +44,31 @@
 
         <View
             android:layout_width="match_parent"
-            android:layout_height="1dp"
+            android:layout_height="@dimen/view_height"
             android:background="@color/dividerLine" />
 
         <TextView
             android:id="@+id/item_overview_item_category"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="26dp"
-            android:layout_marginRight="26dp"
-            android:layout_marginTop="26dp"
+            android:layout_marginLeft="@dimen/overview_category_name_default_margin"
+            android:layout_marginRight="@dimen/overview_category_name_default_margin"
+            android:layout_marginTop="@dimen/overview_category_name_default_margin"
             android:background="@drawable/catagory_text_background"
-            android:padding="8dp"
+            android:padding="@dimen/overview_category_name_padding"
             android:text="Category : Appreance"
             android:textColor="@color/primaryWhiteColor"
-            android:textSize="16sp"
+            android:textSize="@dimen/primary_text_size"
             android:textStyle="bold" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="26dp"
-            android:layout_marginTop="26dp"
+            android:layout_marginBottom="@dimen/overview_attributes_default_margin_padding"
+            android:layout_marginTop="@dimen/overview_attributes_default_margin_padding"
             android:orientation="horizontal"
-            android:paddingLeft="16dp"
-            android:paddingRight="16dp">
+            android:paddingLeft="@dimen/overview_default_margin_padding"
+            android:paddingRight="@dimen/overview_default_margin_padding">
 
             <LinearLayout
                 android:layout_width="0dp"
@@ -81,10 +81,10 @@
                     android:layout_height="match_parent"
                     android:fontFamily="sans-serif"
                     android:gravity="center"
-                    android:paddingBottom="8dp"
+                    android:paddingBottom="@dimen/overview_quantity_price_padding_bottom"
                     android:text="Quantity"
                     android:textColor="@color/primaryTextColor"
-                    android:textSize="14sp" />
+                    android:textSize="@dimen/secondary_text_size" />
 
                 <TextView
                     android:id="@+id/item_overview_item_quantity"
@@ -93,7 +93,7 @@
                     android:fontFamily="sans-serif-light"
                     android:gravity="center"
                     android:textColor="@color/secondaryTextColor"
-                    android:textSize="16sp"
+                    android:textSize="@dimen/primary_text_size"
                     tools:text="12" />
             </LinearLayout>
 
@@ -108,10 +108,10 @@
                     android:layout_height="match_parent"
                     android:fontFamily="sans-serif"
                     android:gravity="center"
-                    android:paddingBottom="8dp"
+                    android:paddingBottom="@dimen/overview_quantity_price_padding_bottom"
                     android:text="Price"
                     android:textColor="@color/primaryTextColor"
-                    android:textSize="14sp" />
+                    android:textSize="@dimen/secondary_text_size" />
 
                 <TextView
                     android:id="@+id/item_overview_item_price"
@@ -120,7 +120,7 @@
                     android:fontFamily="sans-serif-light"
                     android:gravity="center"
                     android:textColor="@color/secondaryTextColor"
-                    android:textSize="16sp"
+                    android:textSize="@dimen/primary_text_size"
                     tools:text="$12.99" />
             </LinearLayout>
 
@@ -130,35 +130,35 @@
             android:id="@+id/textView2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
+            android:layout_marginBottom="@dimen/overview_supplier_title_margin_bottom"
             android:fontFamily="sans-serif-medium"
-            android:paddingLeft="16dp"
-            android:paddingRight="16dp"
+            android:paddingLeft="@dimen/overview_default_margin_padding"
+            android:paddingRight="@dimen/overview_default_margin_padding"
             android:text="Supplier details"
             android:textColor="@color/overviewTextTitle"
-            android:textSize="14sp" />
+            android:textSize="@dimen/secondary_text_size" />
 
         <View
             android:layout_width="match_parent"
-            android:layout_height="1dp"
+            android:layout_height="@dimen/view_height"
             android:background="@color/dividerLine" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:paddingBottom="4dp"
-            android:paddingLeft="26dp"
-            android:paddingRight="26dp"
-            android:paddingTop="26dp">
+            android:paddingBottom="@dimen/overview_attributes_padding"
+            android:paddingLeft="@dimen/overview_attributes_default_margin_padding"
+            android:paddingRight="@dimen/overview_attributes_default_margin_padding"
+            android:paddingTop="@dimen/overview_attributes_default_margin_padding">
 
             <TextView
-                android:layout_width="50dp"
+                android:layout_width="@dimen/overview_attributes_width"
                 android:layout_height="wrap_content"
                 android:fontFamily="sans-serif"
                 android:text="Name"
                 android:textColor="@color/primaryTextColor"
-                android:textSize="14sp" />
+                android:textSize="@dimen/secondary_text_size" />
 
             <TextView
                 android:id="@+id/item_overview_supplier_name"
@@ -166,7 +166,7 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="sans-serif-light"
                 android:textColor="@color/secondaryTextColor"
-                android:textSize="16sp"
+                android:textSize="@dimen/primary_text_size"
                 tools:text="Freshco Inc." />
         </LinearLayout>
 
@@ -174,18 +174,18 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:paddingBottom="4dp"
-            android:paddingLeft="26dp"
-            android:paddingRight="26dp"
-            android:paddingTop="4dp">
+            android:paddingBottom="@dimen/overview_attributes_padding"
+            android:paddingLeft="@dimen/overview_attributes_default_margin_padding"
+            android:paddingRight="@dimen/overview_attributes_default_margin_padding"
+            android:paddingTop="@dimen/overview_attributes_padding">
 
             <TextView
-                android:layout_width="50dp"
+                android:layout_width="@dimen/overview_attributes_width"
                 android:layout_height="wrap_content"
                 android:fontFamily="sans-serif"
                 android:text="Phone"
                 android:textColor="@color/primaryTextColor"
-                android:textSize="14sp" />
+                android:textSize="@dimen/secondary_text_size" />
 
             <TextView
                 android:id="@+id/item_overview_supplier_phone"
@@ -193,7 +193,7 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="sans-serif-light"
                 android:textColor="@color/secondaryTextColor"
-                android:textSize="16sp"
+                android:textSize="@dimen/primary_text_size"
                 tools:text="(123)123-3698" />
         </LinearLayout>
 
@@ -201,18 +201,18 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:paddingBottom="4dp"
-            android:paddingLeft="26dp"
-            android:paddingRight="26dp"
-            android:paddingTop="4dp">
+            android:paddingBottom="@dimen/overview_attributes_padding"
+            android:paddingLeft="@dimen/overview_attributes_default_margin_padding"
+            android:paddingRight="@dimen/overview_attributes_default_margin_padding"
+            android:paddingTop="@dimen/overview_attributes_padding">
 
             <TextView
-                android:layout_width="50dp"
+                android:layout_width="@dimen/overview_attributes_width"
                 android:layout_height="wrap_content"
                 android:fontFamily="sans-serif"
                 android:text="Email"
                 android:textColor="@color/primaryTextColor"
-                android:textSize="14sp" />
+                android:textSize="@dimen/secondary_text_size" />
 
             <TextView
                 android:id="@+id/item_overview_supplier_email"
@@ -220,7 +220,7 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="sans-serif-light"
                 android:textColor="@color/secondaryTextColor"
-                android:textSize="16sp"
+                android:textSize="@dimen/primary_text_size"
                 tools:text="info@freshco.ca" />
         </LinearLayout>
     </LinearLayout>
