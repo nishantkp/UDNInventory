@@ -10,6 +10,7 @@ import android.net.Uri;
 import android.os.AsyncTask;
 import android.support.design.widget.Snackbar;
 import android.support.v4.content.ContextCompat;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -72,18 +73,21 @@ public class ItemCursorAdapter extends CursorAdapter {
         TextView itemNameTextView = view.findViewById(R.id.list_item_item_name);
         TextView itemPriceTextView = view.findViewById(R.id.list_item_item_price);
         final TextView itemQuantityTextView = view.findViewById(R.id.list_item_item_quantity);
+        TextView itemCategoryTextView = view.findViewById(R.id.list_item_item_category);
 
         // Find the columns of item attributes that we are interested in
         int nameColumnIndex = cursor.getColumnIndex(ItemEntry.COLUMN_ITEM_NAME);
         int priceColumnIndex = cursor.getColumnIndex(ItemEntry.COLUMN_ITEM_PRICE);
         int quantityColumnIndex = cursor.getColumnIndex(ItemEntry.COLUMN_ITEM_QUANTITY);
         int idColumnIndex = cursor.getColumnIndex(ItemEntry._ID);
+        int categoryColumnIndex = cursor.getColumnIndex(ItemEntry.COLUMN_ITEM_CATEGORY);
 
         // Read the item attributes from cursor for current item
         final String itemName = cursor.getString(nameColumnIndex);
         double itemPrice = cursor.getDouble(priceColumnIndex);
         int itemQuantity = cursor.getInt(quantityColumnIndex);
         long itemId = cursor.getLong(idColumnIndex);
+        String itemCategory = cursor.getString(categoryColumnIndex);
 
         // If item quantity is below specified limit warn user by changing textColor of quantity
         // about low inventory
@@ -100,6 +104,14 @@ public class ItemCursorAdapter extends CursorAdapter {
         itemNameTextView.setText(itemName);
         itemPriceTextView.setText("$ " + itemPrice);
         itemQuantityTextView.setText(String.valueOf(itemQuantity));
+
+        // Update the item category TextView if the category present
+        if(TextUtils.isEmpty(itemCategory)){
+            itemCategoryTextView.setVisibility(View.GONE);
+        } else {
+            itemCategoryTextView.setVisibility(View.VISIBLE);
+            itemCategoryTextView.setText(itemCategory);
+        }
 
         // Append id of a row in table with {@link ItemEntry#CONTENT_URI} to generate a appropriate
         // uri to update a database at given id, when user clicks decrease button

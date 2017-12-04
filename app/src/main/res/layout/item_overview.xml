@@ -48,6 +48,20 @@
             android:layout_height="1dp"
             android:background="@color/dividerLine" />
 
+        <TextView
+            android:id="@+id/item_overview_item_category"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="26dp"
+            android:layout_marginRight="26dp"
+            android:layout_marginTop="26dp"
+            android:background="@drawable/catagory_text_background"
+            android:padding="8dp"
+            android:text="Category : Appreance"
+            android:textColor="@android:color/white"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

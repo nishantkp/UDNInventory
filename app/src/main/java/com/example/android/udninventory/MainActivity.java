@@ -130,7 +130,8 @@ public class MainActivity extends AppCompatActivity
                         ItemEntry._ID,
                         ItemEntry.COLUMN_ITEM_NAME,
                         ItemEntry.COLUMN_ITEM_QUANTITY,
-                        ItemEntry.COLUMN_ITEM_PRICE};
+                        ItemEntry.COLUMN_ITEM_PRICE,
+                        ItemEntry.COLUMN_ITEM_CATEGORY};
 
                 // This loader will executes content provides query method on background thread
                 return new CursorLoader(this,   // Parent activity context

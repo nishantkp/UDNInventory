@@ -88,6 +88,12 @@ public class ItemContract {
         public static final String COLUMN_ITEM_PRICE = "item_price";
 
         /**
+         * Category of item
+         * Type: TEXT
+         */
+        public static final String COLUMN_ITEM_CATEGORY = "item_category";
+
+        /**
          * Name of supplier
          * Type: TEXT
          */

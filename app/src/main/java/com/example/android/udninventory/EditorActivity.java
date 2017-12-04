@@ -46,6 +46,9 @@ public class EditorActivity extends AppCompatActivity
     /* EditText view to enter Item price */
     private EditText mItemPrice;
 
+    /* EditText view to enter item category*/
+    private EditText mItemCategory;
+
     /* EditText view to enter supplier name */
     private EditText mSupplierName;
 
@@ -121,6 +124,7 @@ public class EditorActivity extends AppCompatActivity
         mItemName = (EditText) findViewById(R.id.item_editor_item_name);
         mItemQuantity = (EditText) findViewById(R.id.item_editor_item_quantity);
         mItemPrice = (EditText) findViewById(R.id.item_editor_item_price);
+        mItemCategory = findViewById(R.id.item_editor_item_category);
         mSupplierName = (EditText) findViewById(R.id.item_editor_supplier_name);
         mSupplierPhone = (EditText) findViewById(R.id.item_editor_supplier_contact);
         mSupplierEmail = (EditText) findViewById(R.id.item_editor_supplier_email);
@@ -143,6 +147,7 @@ public class EditorActivity extends AppCompatActivity
         mItemName.setOnTouchListener(mTouchListener);
         mItemQuantity.setOnTouchListener(mTouchListener);
         mItemPrice.setOnTouchListener(mTouchListener);
+        mItemCategory.setOnTouchListener(mTouchListener);
         mSupplierName.setOnTouchListener(mTouchListener);
         mSupplierPhone.setOnTouchListener(mTouchListener);
         mSupplierEmail.setOnTouchListener(mTouchListener);
@@ -343,6 +348,9 @@ public class EditorActivity extends AppCompatActivity
         /* Get the price of item from EditText view */
         String itemPriceString = mItemPrice.getText().toString().trim();
 
+        /* Get the item category from EditText view */
+        String itemCategoryString = mItemCategory.getText().toString().trim();
+
         /* Get the name of supplier from EditText view */
         String supplierNameString = mSupplierName.getText().toString().trim();
 
@@ -391,6 +399,7 @@ public class EditorActivity extends AppCompatActivity
         contentValues.put(ItemEntry.COLUMN_ITEM_NAME, itemNameString);
         contentValues.put(ItemEntry.COLUMN_ITEM_PRICE, itemPrice);
         contentValues.put(ItemEntry.COLUMN_ITEM_QUANTITY, itemQuantity);
+        contentValues.put(ItemEntry.COLUMN_ITEM_CATEGORY, itemCategoryString);
         contentValues.put(ItemEntry.COLUMN_SUPPLIER_NAME, supplierNameString);
         contentValues.put(ItemEntry.COLUMN_SUPPLIER_PHONE, supplierPhoneString);
         contentValues.put(ItemEntry.COLUMN_SUPPLIER_EMAIL, supplierEmailString);
@@ -436,6 +445,7 @@ public class EditorActivity extends AppCompatActivity
                 ItemEntry.COLUMN_ITEM_NAME,
                 ItemEntry.COLUMN_ITEM_PRICE,
                 ItemEntry.COLUMN_ITEM_QUANTITY,
+                ItemEntry.COLUMN_ITEM_CATEGORY,
                 ItemEntry.COLUMN_SUPPLIER_NAME,
                 ItemEntry.COLUMN_SUPPLIER_PHONE,
                 ItemEntry.COLUMN_SUPPLIER_EMAIL,
@@ -458,6 +468,7 @@ public class EditorActivity extends AppCompatActivity
             int itemNameIndex = data.getColumnIndex(ItemEntry.COLUMN_ITEM_NAME);
             int itemQuantityIndex = data.getColumnIndex(ItemEntry.COLUMN_ITEM_QUANTITY);
             int itemPriceIndex = data.getColumnIndex(ItemEntry.COLUMN_ITEM_PRICE);
+            int itemCategoryIndex = data.getColumnIndex(ItemEntry.COLUMN_ITEM_CATEGORY);
             int supplierNameIndex = data.getColumnIndex(ItemEntry.COLUMN_SUPPLIER_NAME);
             int supplierPhoneIndex = data.getColumnIndex(ItemEntry.COLUMN_SUPPLIER_PHONE);
             int supplierEmailIndex = data.getColumnIndex(ItemEntry.COLUMN_SUPPLIER_EMAIL);
@@ -467,6 +478,7 @@ public class EditorActivity extends AppCompatActivity
             String itemNameString = data.getString(itemNameIndex);
             String itemQuantityString = data.getString(itemQuantityIndex);
             String itemPriceString = data.getString(itemPriceIndex);
+            String itemCategoryString = data.getString(itemCategoryIndex);
             String supplierNameString = data.getString(supplierNameIndex);
             String supplierPhoneString = data.getString(supplierPhoneIndex);
             String supplierEmailString = data.getString(supplierEmailIndex);
@@ -476,6 +488,7 @@ public class EditorActivity extends AppCompatActivity
             mItemName.setText(itemNameString);
             mItemQuantity.setText(itemQuantityString);
             mItemPrice.setText(itemPriceString);
+            mItemCategory.setText(itemCategoryString);
             mSupplierName.setText(supplierNameString);
             mSupplierPhone.setText(supplierPhoneString);
             mSupplierEmail.setText(supplierEmailString);
@@ -495,6 +508,7 @@ public class EditorActivity extends AppCompatActivity
         mItemName.setText(null);
         mItemPrice.setText(null);
         mItemQuantity.setText(null);
+        mItemCategory.setText(null);
         mSupplierName.setText(null);
         mSupplierPhone.setText(null);
         mSupplierEmail.setText(null);

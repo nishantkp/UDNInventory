@@ -35,6 +35,8 @@ public class OverviewActivity extends AppCompatActivity
     private TextView mItemQuantity;
     /* TextView for price of item */
     private TextView mItemPrice;
+    /* TextView for category of item */
+    private TextView mItemCategory;
     /* TextView for name of supplier */
     private TextView mSupplierName;
     /* TextView for phone number of supplier */
@@ -63,6 +65,7 @@ public class OverviewActivity extends AppCompatActivity
         mItemName = findViewById(R.id.item_overview_item_name);
         mItemPrice = findViewById(R.id.item_overview_item_price);
         mItemQuantity = findViewById(R.id.item_overview_item_quantity);
+        mItemCategory = findViewById(R.id.item_overview_item_category);
         mSupplierName = findViewById(R.id.item_overview_supplier_name);
         mSupplierPhone = findViewById(R.id.item_overview_supplier_phone);
         mSupplierEmail = findViewById(R.id.item_overview_supplier_email);
@@ -81,6 +84,7 @@ public class OverviewActivity extends AppCompatActivity
                 ItemEntry.COLUMN_ITEM_NAME,
                 ItemEntry.COLUMN_ITEM_PRICE,
                 ItemEntry.COLUMN_ITEM_QUANTITY,
+                ItemEntry.COLUMN_ITEM_CATEGORY,
                 ItemEntry.COLUMN_SUPPLIER_NAME,
                 ItemEntry.COLUMN_SUPPLIER_PHONE,
                 ItemEntry.COLUMN_SUPPLIER_EMAIL,
@@ -103,6 +107,7 @@ public class OverviewActivity extends AppCompatActivity
             int itemNameIndex = data.getColumnIndex(ItemEntry.COLUMN_ITEM_NAME);
             int itemQuantityIndex = data.getColumnIndex(ItemEntry.COLUMN_ITEM_QUANTITY);
             int itemPriceIndex = data.getColumnIndex(ItemEntry.COLUMN_ITEM_PRICE);
+            int itemCategoryIndex = data.getColumnIndex(ItemEntry.COLUMN_ITEM_CATEGORY);
             int supplierNameIndex = data.getColumnIndex(ItemEntry.COLUMN_SUPPLIER_NAME);
             int supplierPhoneIndex = data.getColumnIndex(ItemEntry.COLUMN_SUPPLIER_PHONE);
             int supplierEmailIndex = data.getColumnIndex(ItemEntry.COLUMN_SUPPLIER_EMAIL);
@@ -112,6 +117,7 @@ public class OverviewActivity extends AppCompatActivity
             String itemNameString = data.getString(itemNameIndex);
             String itemQuantityString = data.getString(itemQuantityIndex);
             String itemPriceString = data.getString(itemPriceIndex);
+            String itemCategoryString = data.getString(itemCategoryIndex);
             String supplierNameString = data.getString(supplierNameIndex);
             String supplierPhoneString = data.getString(supplierPhoneIndex);
             String supplierEmailString = data.getString(supplierEmailIndex);
@@ -121,6 +127,15 @@ public class OverviewActivity extends AppCompatActivity
             mItemName.setText(itemNameString);
             mItemQuantity.setText(itemQuantityString);
             mItemPrice.setText("$ " + itemPriceString);
+
+            // If user has not provided item category, display n/a
+            if(TextUtils.isEmpty(itemCategoryString)){
+                mItemCategory.setText("Category : n/a");
+            } else {
+                // If user has provided item category, display category
+                mItemCategory.setText("Category : " + itemCategoryString);
+            }
+
             // If supplier name is not present, set text to "n/a"
             if (TextUtils.isEmpty(supplierNameString)) {
                 mSupplierName.setText("n/a");
