@@ -38,10 +38,10 @@ public class MainActivity extends AppCompatActivity
         setContentView(R.layout.list);
 
         // Find the ListView which will be populated with item data
-        ListView itemListView = (ListView) findViewById(R.id.list);
+        ListView itemListView = findViewById(R.id.list);
 
         // Find the View with id empty_view in res/layout/list.xml
-        View emptyView = (View) findViewById(R.id.empty_view);
+        View emptyView = findViewById(R.id.empty_view);
         // Set the emptyView on ListView, to dosplay the "No content" text
         // when there is no item display on ListView
         itemListView.setEmptyView(emptyView);
