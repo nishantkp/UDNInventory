@@ -121,22 +121,22 @@ public class EditorActivity extends AppCompatActivity
         }
 
         // Find all the relevant views we need to take data from user
-        mItemName = (EditText) findViewById(R.id.item_editor_item_name);
-        mItemQuantity = (EditText) findViewById(R.id.item_editor_item_quantity);
-        mItemPrice = (EditText) findViewById(R.id.item_editor_item_price);
+        mItemName = findViewById(R.id.item_editor_item_name);
+        mItemQuantity = findViewById(R.id.item_editor_item_quantity);
+        mItemPrice = findViewById(R.id.item_editor_item_price);
         mItemCategory = findViewById(R.id.item_editor_item_category);
-        mSupplierName = (EditText) findViewById(R.id.item_editor_supplier_name);
-        mSupplierPhone = (EditText) findViewById(R.id.item_editor_supplier_contact);
-        mSupplierEmail = (EditText) findViewById(R.id.item_editor_supplier_email);
-        mIncreaseQuantity = (Button) findViewById(R.id.item_editor_increase_quantity);
-        mDecreaseQuantity = (Button) findViewById(R.id.item_editor_decrease_quantity);
+        mSupplierName = findViewById(R.id.item_editor_supplier_name);
+        mSupplierPhone = findViewById(R.id.item_editor_supplier_contact);
+        mSupplierEmail = findViewById(R.id.item_editor_supplier_email);
+        mIncreaseQuantity = findViewById(R.id.item_editor_increase_quantity);
+        mDecreaseQuantity = findViewById(R.id.item_editor_decrease_quantity);
 
-        mPlaceOrder = (Button) findViewById(R.id.item_editor_place_order);
-        mNewOrderQuantity = (EditText) findViewById(R.id.item_editor_new_order_quantity);
+        mPlaceOrder = findViewById(R.id.item_editor_place_order);
+        mNewOrderQuantity = findViewById(R.id.item_editor_new_order_quantity);
 
         // Button and ImageView for taking photo and displaying thumbnail
-        mItemThumbnail = (ImageView) findViewById(R.id.item_editor_item_thumbnail);
-        Button captureImage = (Button) findViewById(R.id.item_editor_take_photo);
+        mItemThumbnail = findViewById(R.id.item_editor_item_thumbnail);
+        Button captureImage = findViewById(R.id.item_editor_take_photo);
         // Set the opacity of button background to make it transparent
         captureImage.getBackground().setAlpha(180);
 
