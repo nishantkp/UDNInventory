@@ -1,5 +1,6 @@
 package com.example.android.udninventory;
 
+import android.annotation.SuppressLint;
 import android.content.ContentUris;
 import android.content.ContentValues;
 import android.content.Context;
@@ -64,12 +65,13 @@ public class ItemCursorAdapter extends CursorAdapter {
      * @param cursor  Cursor from which we get the data. The Cursor is already moved to
      *                correct row
      */
+    @SuppressLint("SetTextI18n")
     @Override
     public void bindView(final View view, Context context, final Cursor cursor) {
         // Find the appropriate TextViews from res/layout/list_item.xml
-        TextView itemNameTextView = (TextView) view.findViewById(R.id.list_item_item_name);
-        TextView itemPriceTextView = (TextView) view.findViewById(R.id.list_item_item_price);
-        final TextView itemQuantityTextView = (TextView) view.findViewById(R.id.list_item_item_quantity);
+        TextView itemNameTextView = view.findViewById(R.id.list_item_item_name);
+        TextView itemPriceTextView = view.findViewById(R.id.list_item_item_price);
+        final TextView itemQuantityTextView = view.findViewById(R.id.list_item_item_quantity);
 
         // Find the columns of item attributes that we are interested in
         int nameColumnIndex = cursor.getColumnIndex(ItemEntry.COLUMN_ITEM_NAME);
@@ -106,7 +108,7 @@ public class ItemCursorAdapter extends CursorAdapter {
         // Find the button for decreasing the quantity in ListView with id : list_item_item_decrease_quantity_button
         // As button doesn't work on ListView, we have to set on click listener on decrease quantity
         // in Adapter view
-        Button decreaseQuantityButton = (Button) view.findViewById(R.id.list_item_item_decrease_quantity_button);
+        Button decreaseQuantityButton = view.findViewById(R.id.list_item_item_decrease_quantity_button);
         // Attach a listener to button
         decreaseQuantityButton.setOnClickListener(new View.OnClickListener() {
             @Override
