@@ -10,6 +10,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.design.widget.Snackbar;
+import android.support.design.widget.TextInputLayout;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.app.NavUtils;
 import android.support.v4.content.CursorLoader;
@@ -130,6 +131,24 @@ public class EditorActivity extends AppCompatActivity
         mSupplierEmail = findViewById(R.id.item_editor_supplier_email);
         mIncreaseQuantity = findViewById(R.id.item_editor_increase_quantity);
         mDecreaseQuantity = findViewById(R.id.item_editor_decrease_quantity);
+
+        // Find the wrapper for TextInputLayout with respective Ids
+        TextInputLayout itemNameWrapper = findViewById(R.id.item_editor_item_name_wrapper);
+        TextInputLayout itemQuantityWrapper = findViewById(R.id.item_editor_item_quantity_wrapper);
+        TextInputLayout itemPriceWrapper = findViewById(R.id.item_editor_item_price_wrapper);
+        TextInputLayout itemCategoryWrapper = findViewById(R.id.item_editor_item_category_wrapper);
+        TextInputLayout supplierNameWrapper = findViewById(R.id.item_editor_supplier_name_wrapper);
+        TextInputLayout supplierContactWrapper = findViewById(R.id.item_editor_supplier_contact_wrapper);
+        TextInputLayout supplierEmailWrapper = findViewById(R.id.item_editor_supplier_email_wrapper);
+
+        // Set the hint for all TextInputLayouts
+        itemNameWrapper.setHint(getString(R.string.editor_text_input_layout_name_hint));
+        itemQuantityWrapper.setHint(getString(R.string.editor_text_input_layout_quantity_hint));
+        itemPriceWrapper.setHint(getString(R.string.editor_text_input_layout_price_hint));
+        itemCategoryWrapper.setHint(getString(R.string.editor_text_input_layout_category_hint));
+        supplierNameWrapper.setHint(getString(R.string.editor_text_input_layout_name_hint));
+        supplierContactWrapper.setHint(getString(R.string.editor_text_input_layout_phone_hint));
+        supplierEmailWrapper.setHint(getString(R.string.editor_text_input_layout_email_hint));
 
         mPlaceOrder = findViewById(R.id.item_editor_place_order);
         mNewOrderQuantity = findViewById(R.id.item_editor_new_order_quantity);

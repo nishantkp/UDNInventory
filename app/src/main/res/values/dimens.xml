@@ -17,8 +17,8 @@
     <dimen name="editor_attributes_name_width">70dp</dimen>
     <dimen name="editor_default_margin_padding">16dp</dimen>
     <dimen name="editor_section_margin_bottom">26dp</dimen>
-    <dimen name="editor_section_margin_left">26dp</dimen>
-    <dimen name="editor_section_margin_right">12dp</dimen>
+    <dimen name="editor_section_padding_left">16dp</dimen>
+    <dimen name="editor_section_padding_right">16dp</dimen>
     <dimen name="editor_place_order_padding_top">4dp</dimen>
     <dimen name="editor_place_order_padding_bottom">4dp</dimen>
     <dimen name="editor_new_order_edit_text_padding">6dp</dimen>

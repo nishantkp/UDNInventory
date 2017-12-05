@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/myCoordinatorLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
@@ -48,7 +49,7 @@
 
             <TextView
                 style="@style/editor_activity_section_divider"
-                android:text="Product" />
+                android:text="@string/editor_section_product_title" />
 
             <View
                 android:layout_width="match_parent"
@@ -59,8 +60,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:paddingLeft="@dimen/editor_section_margin_left"
-                android:paddingRight="@dimen/editor_section_margin_right">
+                android:paddingLeft="@dimen/editor_section_padding_left"
+                android:paddingRight="@dimen/editor_section_padding_right">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -69,41 +70,41 @@
                     android:paddingBottom="@dimen/editor_attributes_default_padding"
                     android:paddingTop="@dimen/editor_default_margin_padding">
 
-                    <TextView
-                        android:id="@+id/textView"
-                        style="@style/editor_activity_attributes_text_style"
-                        android:text="name" />
+                    <android.support.design.widget.TextInputLayout
+                        android:id="@+id/item_editor_item_name_wrapper"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
 
-                    <EditText
-                        android:id="@+id/item_editor_item_name"
-                        style="@style/editor_activity_edit_text_style"
-                        android:hint="Tomato"
-                        android:inputType="textCapWords|textNoSuggestions" />
+                        <EditText
+                            android:id="@+id/item_editor_item_name"
+                            style="@style/editor_activity_edit_text_style"
+                            android:inputType="textCapWords|textNoSuggestions"
+                            tools:hint="Tomato" />
+                    </android.support.design.widget.TextInputLayout>
                 </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:paddingBottom="@dimen/editor_attributes_default_padding"
-                    android:paddingTop="@dimen/editor_attributes_default_padding">
-
-                    <TextView
-                        android:id="@+id/textView3"
-                        style="@style/editor_activity_attributes_text_style"
-                        android:text="price" />
+                    android:layout_marginBottom="@dimen/editor_attributes_default_padding"
+                    android:orientation="horizontal">
 
                     <RelativeLayout
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="4">
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
 
-                        <EditText
-                            android:id="@+id/item_editor_item_price"
-                            style="@style/editor_activity_price_edit_text_style"
-                            android:layout_marginLeft="12dp"
-                            android:hint="24.99"
-                            android:inputType="numberDecimal" />
+                        <android.support.design.widget.TextInputLayout
+                            android:id="@+id/item_editor_item_price_wrapper"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <EditText
+                                android:id="@+id/item_editor_item_price"
+                                style="@style/editor_activity_price_edit_text_style"
+                                android:layout_marginLeft="12dp"
+                                android:inputType="numberDecimal"
+                                tools:hint="24.99" />
+                        </android.support.design.widget.TextInputLayout>
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -111,70 +112,65 @@
                             android:layout_alignParentLeft="true"
                             android:layout_centerVertical="true"
                             android:text="$"
-                            android:textAppearance="?android:textAppearanceSmall"
-                            android:textColor="@color/secondaryTextColor" />
+                            android:textColor="@color/secondaryTextColor"
+                            android:textSize="@dimen/primary_text_size" />
                     </RelativeLayout>
                 </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:paddingBottom="@dimen/editor_attributes_default_padding"
-                    android:paddingTop="@dimen/editor_attributes_default_padding">
+                    android:layout_marginBottom="@dimen/editor_attributes_default_padding"
+                    android:orientation="horizontal">
 
-                    <TextView
-                        style="@style/editor_activity_attributes_text_style"
-                        android:text="quantity" />
+                    <Button
+                        android:id="@+id/item_editor_decrease_quantity"
+                        style="@style/editor_activity_quantity_modification_style"
+                        android:drawableLeft="@drawable/ic_remove_circle_outline_black_24dp"
+                        android:drawableTint="@color/colorAccent" />
 
-                    <LinearLayout
+                    <android.support.design.widget.TextInputLayout
+                        android:id="@+id/item_editor_item_quantity_wrapper"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_weight="4">
-
-                        <Button
-                            android:id="@+id/item_editor_decrease_quantity"
-                            style="@style/editor_activity_quantity_modification_style"
-                            android:drawableLeft="@drawable/ic_remove_circle_outline_black_24dp"
-                            android:drawableTint="@color/colorAccent" />
+                        android:layout_weight="1">
 
                         <EditText
                             android:id="@+id/item_editor_item_quantity"
                             style="@style/editor_activity_quantity_edit_text_style"
-                            android:layout_weight="1"
-                            android:hint="24"
-                            android:inputType="number" />
+                            android:inputType="number"
+                            tools:hint="24" />
+                    </android.support.design.widget.TextInputLayout>
 
-                        <Button
-                            android:id="@+id/item_editor_increase_quantity"
-                            style="@style/editor_activity_quantity_modification_style"
-                            android:drawableLeft="@drawable/ic_add_circle_black_24dp"
-                            android:drawableTint="@color/colorAccent" />
-                    </LinearLayout>
+                    <Button
+                        android:id="@+id/item_editor_increase_quantity"
+                        style="@style/editor_activity_quantity_modification_style"
+                        android:drawableLeft="@drawable/ic_add_circle_black_24dp"
+                        android:drawableTint="@color/colorAccent" />
                 </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:paddingBottom="@dimen/editor_attributes_default_padding"
-                    android:paddingTop="@dimen/editor_attributes_default_padding">
+                    android:paddingBottom="@dimen/editor_attributes_default_padding">
 
-                    <TextView
-                        style="@style/editor_activity_attributes_text_style"
-                        android:text="category" />
+                    <android.support.design.widget.TextInputLayout
+                        android:id="@+id/item_editor_item_category_wrapper"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
 
-                    <EditText
-                        android:id="@+id/item_editor_item_category"
-                        style="@style/editor_activity_edit_text_style"
-                        android:hint="Grocery"
-                        android:inputType="textCapWords|textNoSuggestions" />
+                        <EditText
+                            android:id="@+id/item_editor_item_category"
+                            style="@style/editor_activity_edit_text_style"
+                            android:inputType="textCapWords|textNoSuggestions"
+                            tools:hint="Grocery" />
+                    </android.support.design.widget.TextInputLayout>
                 </LinearLayout>
             </LinearLayout>
 
             <TextView
                 style="@style/editor_activity_section_divider"
-                android:text="Supplier" />
+                android:text="@string/editor_section_supplier_title" />
 
             <View
                 android:layout_width="match_parent"
@@ -185,9 +181,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/editor_section_margin_bottom"
-                android:layout_marginLeft="@dimen/editor_section_margin_left"
-                android:layout_marginRight="@dimen/editor_section_margin_right"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:paddingLeft="@dimen/editor_section_padding_left"
+                android:paddingRight="@dimen/editor_section_padding_right">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -196,51 +192,55 @@
                     android:paddingBottom="@dimen/editor_attributes_default_padding"
                     android:paddingTop="@dimen/editor_default_margin_padding">
 
-                    <TextView
-                        style="@style/editor_activity_attributes_text_style"
-                        android:text="name" />
+                    <android.support.design.widget.TextInputLayout
+                        android:id="@+id/item_editor_supplier_name_wrapper"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
 
-                    <EditText
-                        android:id="@+id/item_editor_supplier_name"
-                        style="@style/editor_activity_edit_text_style"
-                        android:hint="Management Inc."
-                        android:inputType="textCapWords|textNoSuggestions" />
+                        <EditText
+                            android:id="@+id/item_editor_supplier_name"
+                            style="@style/editor_activity_edit_text_style"
+                            android:inputType="textCapWords|textNoSuggestions"
+                            tools:hint="Management Inc." />
+                    </android.support.design.widget.TextInputLayout>
                 </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
-                    android:paddingBottom="@dimen/editor_attributes_default_padding"
-                    android:paddingTop="@dimen/editor_attributes_default_padding">
+                    android:paddingBottom="@dimen/editor_attributes_default_padding">
 
-                    <TextView
-                        style="@style/editor_activity_attributes_text_style"
-                        android:text="phone" />
+                    <android.support.design.widget.TextInputLayout
+                        android:id="@+id/item_editor_supplier_contact_wrapper"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
 
-                    <EditText
-                        android:id="@+id/item_editor_supplier_contact"
-                        style="@style/editor_activity_edit_text_style"
-                        android:hint="(123)456-9639"
-                        android:inputType="phone" />
+                        <EditText
+                            android:id="@+id/item_editor_supplier_contact"
+                            style="@style/editor_activity_edit_text_style"
+                            android:inputType="phone"
+                            tools:hint="(123)456-9639" />
+                    </android.support.design.widget.TextInputLayout>
                 </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
-                    android:paddingBottom="@dimen/editor_attributes_default_padding"
-                    android:paddingTop="@dimen/editor_attributes_default_padding">
+                    android:paddingBottom="@dimen/editor_attributes_default_padding">
 
-                    <TextView
-                        style="@style/editor_activity_attributes_text_style"
-                        android:text="email" />
+                    <android.support.design.widget.TextInputLayout
+                        android:id="@+id/item_editor_supplier_email_wrapper"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
 
-                    <EditText
-                        android:id="@+id/item_editor_supplier_email"
-                        style="@style/editor_activity_edit_text_style"
-                        android:hint="you@example.com"
-                        android:inputType="textWebEmailAddress" />
+                        <EditText
+                            android:id="@+id/item_editor_supplier_email"
+                            style="@style/editor_activity_edit_text_style"
+                            android:inputType="textWebEmailAddress"
+                            tools:hint="you@example.com" />
+                    </android.support.design.widget.TextInputLayout>
                 </LinearLayout>
             </LinearLayout>
 
@@ -292,7 +292,7 @@
                     android:layout_gravity="center"
                     android:layout_marginBottom="@dimen/editor_delete_frame_view_margin"
                     android:layout_marginTop="@dimen/editor_delete_frame_view_margin"
-                    android:background="@drawable/delete_textview_border">
+                    android:background="@drawable/delete_text_view_border">
 
                     <TextView
                         android:id="@+id/item_editor_delete_item"

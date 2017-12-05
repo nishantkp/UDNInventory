@@ -66,4 +66,18 @@
 
     <!-- Action button for snackBar in home screen for ordering an item [CHAR LIMIT=20] -->
     <string name="catalog_make_an_order_snackBar_action_button">order</string>
+
+    <!-- Hints for Editor Activity TextInputLayouts [CHAR LIMIT=20] -->
+    <string name="editor_text_input_layout_name_hint">Name</string>
+    <string name="editor_text_input_layout_quantity_hint">Quantity</string>
+    <string name="editor_text_input_layout_category_hint">Category</string>
+    <string name="editor_text_input_layout_price_hint">Price</string>
+    <string name="editor_text_input_layout_phone_hint">Phone</string>
+    <string name="editor_text_input_layout_email_hint">Email</string>
+
+    <!-- Product section title for editor activity [CHAR LIMIT=20] -->
+    <string name="editor_section_product_title">Product</string>
+
+    <!-- Supplier section title for editor activity [CHAR LIMIT=20] -->
+    <string name="editor_section_supplier_title">Supplier</string>
 </resources>
