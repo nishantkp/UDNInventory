@@ -80,4 +80,16 @@
 
     <!-- Supplier section title for editor activity [CHAR LIMIT=20] -->
     <string name="editor_section_supplier_title">Supplier</string>
+
+    <!-- Error message for editor item name EditText [CHAR LIMIT=30] -->
+    <string name="editor_item_name_required">Item name required</string>
+
+    <!-- Error message for editor item quantity EditText [CHAR LIMIT=30] -->
+    <string name="editor_item_quantity_required">Item quantity required</string>
+
+    <!-- Error message for editor item price EditText [CHAR LIMIT=30] -->
+    <string name="editor_item_price_required">Valid price required</string>
+
+    <!-- Error message for editor supplier email EditText [CHAR LIMIT=45] -->
+    <string name="editor_supplier_email_not_valid">Not a valid email address</string>
 </resources>

@@ -32,60 +32,52 @@ import android.widget.Toast;
 
 import com.example.android.udninventory.data.ItemBitmapUtils;
 import com.example.android.udninventory.data.ItemContract.ItemEntry;
+import com.example.android.udninventory.data.Validation;
 
 public class EditorActivity extends AppCompatActivity
         implements LoaderManager.LoaderCallbacks<Cursor> {
     /* TAG for log messages */
     private static final String LOG_TAG = EditorActivity.class.getName();
-
-    /* EditText view to enter item name */
-    private EditText mItemName;
-
-    /* EditText view to enter item quantity */
-    private EditText mItemQuantity;
-
-    /* EditText view to enter Item price */
-    private EditText mItemPrice;
-
-    /* EditText view to enter item category*/
-    private EditText mItemCategory;
-
-    /* EditText view to enter supplier name */
-    private EditText mSupplierName;
-
-    /* EditText view to enter supplier contact information i.e Phone number */
-    private EditText mSupplierPhone;
-
-    /* EditText view to enter supplier email */
-    private EditText mSupplierEmail;
-
-    /* EditText view to enter new order quantity */
-    private EditText mNewOrderQuantity;
-
-    /* Button for decreasing the quantity of item by 1 */
-    private Button mDecreaseQuantity;
-
-    /* Button for increasing the quantity for item by 1*/
-    private Button mIncreaseQuantity;
-
-    /* Button for placing new order*/
-    private Button mPlaceOrder;
-
-    /* Stores the Uri received from MainActivity */
-    private Uri mCurrentItemUri;
-
     /* Loader id for an existing loader */
     private static final int EXISTING_ITEM_LOADER = 0;
-
-    /* Will be true if user updates the part of form */
-    private boolean mItemHasChanged = false;
-
-    /* ImageView for displaying photo of an item */
-    private ImageView mItemThumbnail;
-
     /* This code will be return to onActivityResult() when activity exists */
     private static final int REQUEST_IMAGE_CAPTURE = 1;
-
+    /* TextInputLayout for item name */
+    TextInputLayout itemNameWrapper;
+    /* TextInputLayout for item quantity */
+    TextInputLayout itemQuantityWrapper;
+    /* TextInputLayout for item price */
+    TextInputLayout itemPriceWrapper;
+    /* EditText view to enter item name */
+    private EditText mItemName;
+    /* EditText view to enter item quantity */
+    private EditText mItemQuantity;
+    /* EditText view to enter Item price */
+    private EditText mItemPrice;
+    /* EditText view to enter item category*/
+    private EditText mItemCategory;
+    /* EditText view to enter supplier name */
+    private EditText mSupplierName;
+    /* EditText view to enter supplier contact information i.e Phone number */
+    private EditText mSupplierPhone;
+    /* EditText view to enter supplier email */
+    private EditText mSupplierEmail;
+    /* EditText view to enter new order quantity */
+    private EditText mNewOrderQuantity;
+    /* Button for decreasing the quantity of item by 1 */
+    private Button mDecreaseQuantity;
+    /* Button for increasing the quantity for item by 1*/
+    private Button mIncreaseQuantity;
+    /* Button for placing new order*/
+    private Button mPlaceOrder;
+    /* Stores the Uri received from MainActivity */
+    private Uri mCurrentItemUri;
+    /* Will be true if user updates the part of form */
+    private boolean mItemHasChanged = false;
+    /* ImageView for displaying photo of an item */
+    private ImageView mItemThumbnail;
+    /* Data flag to be set depending upon valid data */
+    private boolean mValidDataFlag = true;
     /* Touch listener */
     private View.OnTouchListener mTouchListener = new View.OnTouchListener() {
         @Override
@@ -94,8 +86,9 @@ public class EditorActivity extends AppCompatActivity
             return false;
         }
     };
-
     private Uri mNewlyInsertedRowUri = null;
+    /* TextInputLayout for supplier email */
+    private TextInputLayout supplierEmailWrapper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -133,13 +126,13 @@ public class EditorActivity extends AppCompatActivity
         mDecreaseQuantity = findViewById(R.id.item_editor_decrease_quantity);
 
         // Find the wrapper for TextInputLayout with respective Ids
-        TextInputLayout itemNameWrapper = findViewById(R.id.item_editor_item_name_wrapper);
-        TextInputLayout itemQuantityWrapper = findViewById(R.id.item_editor_item_quantity_wrapper);
-        TextInputLayout itemPriceWrapper = findViewById(R.id.item_editor_item_price_wrapper);
+        itemNameWrapper = findViewById(R.id.item_editor_item_name_wrapper);
+        itemQuantityWrapper = findViewById(R.id.item_editor_item_quantity_wrapper);
+        itemPriceWrapper = findViewById(R.id.item_editor_item_price_wrapper);
         TextInputLayout itemCategoryWrapper = findViewById(R.id.item_editor_item_category_wrapper);
         TextInputLayout supplierNameWrapper = findViewById(R.id.item_editor_supplier_name_wrapper);
         TextInputLayout supplierContactWrapper = findViewById(R.id.item_editor_supplier_contact_wrapper);
-        TextInputLayout supplierEmailWrapper = findViewById(R.id.item_editor_supplier_email_wrapper);
+        supplierEmailWrapper = findViewById(R.id.item_editor_supplier_email_wrapper);
 
         // Set the hint for all TextInputLayouts
         itemNameWrapper.setHint(getString(R.string.editor_text_input_layout_name_hint));
@@ -248,7 +241,15 @@ public class EditorActivity extends AppCompatActivity
                 // If we have a valid quantity and supplier email then place a new order for
                 // given quantity
                 if (!TextUtils.isEmpty(quantity) && !TextUtils.isEmpty(supplierEmail)) {
-                    placeNewOrder(quantity, supplierEmail, itemName);
+                    // Check if the supplier email is valid or not, then place order
+                    // otherwise show error message indicating not valid email address
+                    if (Validation.validateEmail(supplierEmail)) {
+                        supplierEmailWrapper.setErrorEnabled(false);
+                        placeNewOrder(quantity, supplierEmail, itemName);
+                    } else {
+                        supplierEmailWrapper.setError("Not valid email");
+                    }
+
                 } else {
                     if (TextUtils.isEmpty(quantity)
                             && TextUtils.isEmpty(supplierEmail)) {
@@ -289,6 +290,10 @@ public class EditorActivity extends AppCompatActivity
         switch (item.getItemId()) {
             case R.id.editor_save_item:
                 saveItem();
+                // If valid data flag is false, return without saving item
+                if (!mValidDataFlag) {
+                    return true;
+                }
                 /* If we are editing an existing item,and user clicks on save item button
                 * start the intent to {@link OverviewActivity} with Uri of current
                 * item to display the updated item on {@link OverviewActivity} */
@@ -391,6 +396,27 @@ public class EditorActivity extends AppCompatActivity
             return;
         }
 
+        /* If we are creating a new item and entered data is not valid, show error messages
+        * to appropriate EditText to avoid updating database with incorrect values */
+        if (mCurrentItemUri == null) {
+            if (!validateData()) {
+                // Set the valid data flag to false
+                mValidDataFlag = false;
+                return;
+            }
+        }
+
+        // If user has provided email address and if it's not valid then show the error message
+        if (!Validation.validateEmail(supplierEmailString) && Validation.isInputDataPresent(supplierEmailString)) {
+            supplierEmailWrapper.setError(getString(R.string.editor_supplier_email_not_valid));
+            mValidDataFlag = false;
+            return;
+        } else {
+            supplierEmailWrapper.setErrorEnabled(false);
+        }
+        // Set the valid data flag to true
+        mValidDataFlag = true;
+
         int itemQuantity;
         // If user has not provided the quantity, do not parse the quantity string into integer
         // use 0 instead
@@ -453,6 +479,61 @@ public class EditorActivity extends AppCompatActivity
                         Toast.LENGTH_LONG).show();
             }
         }
+    }
+
+    /**
+     * This method is called to verify data inputted by user
+     *
+     * @return true if data is valid, false if data is not valid
+     */
+    private boolean validateData() {
+        /* Read the input string and trim the leading and trailing white spaces */
+        /* Get the name of item from EditText view */
+        String itemNameString = mItemName.getText().toString().trim();
+
+        /* Get the quantity of item from EditText view */
+        String itemQuantityString = mItemQuantity.getText().toString().trim();
+
+        /* Get the price of item from EditText view */
+        String itemPriceString = mItemPrice.getText().toString().trim();
+
+        /* Get the email address of supplier from EditText view */
+        String supplierEmailString = mSupplierEmail.getText().toString().trim();
+
+        // If user has not provided any name, then give error message
+        if (!Validation.isInputDataPresent(itemNameString)) {
+            itemNameWrapper.setError(getString(R.string.editor_item_name_required));
+            return false;
+        } else {
+            itemNameWrapper.setErrorEnabled(false);
+        }
+
+        // If user has not provided item price, then give error message
+        if (!Validation.isInputDataPresent(itemPriceString)) {
+            itemPriceWrapper.setError(getString(R.string.editor_item_price_required));
+            return false;
+        } else {
+            itemPriceWrapper.setErrorEnabled(false);
+        }
+
+        // If user has not provided quantity, then give error message
+        if (!Validation.isInputDataPresent(itemQuantityString)) {
+            itemQuantityWrapper.setError(getString(R.string.editor_item_quantity_required));
+            return false;
+        } else {
+            itemQuantityWrapper.setErrorEnabled(false);
+        }
+
+        // If user has not given the valid email address, set the error message and exit the method,
+        // without updating database
+        if (!Validation.validateEmail(supplierEmailString) && Validation.isInputDataPresent(supplierEmailString)) {
+            supplierEmailWrapper.setError(getString(R.string.editor_supplier_email_not_valid));
+            return false;
+        } else {
+            supplierEmailWrapper.setErrorEnabled(false);
+        }
+
+        return true;
     }
 
     @Override
