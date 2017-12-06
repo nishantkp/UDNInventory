@@ -28,6 +28,7 @@ Imagine that you are the Android developer at a merchandise startup, tasked with
 - Capture image of product
 - Make an order of existing product with one click
 - Decrease the quantity of product from homescreen
+- TextInputLayout
 
 #### Perform a small background task with AsyncTask
 
@@ -43,6 +44,47 @@ AsyncTask.execute(new Runnable() {
       //TODO your background code
    }
 });
+```
+
+#### TextInputLayout
+
+Make your EditText view as per material design guidlines.
+
+###### Import support libraries
+
+```gradle
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation 'com.android.support:appcompat-v7:26.1.0'
+    implementation 'com.android.support:design:26.1.0'
+}
+```
+
+`TextInputLayout` just works as `LinearLayout`, it's just a wrapper. It only excepts one child similar to `ScrollView`.
+
+```xml
+<android.support.design.widget.TextInputLayout
+    android:id="@+id/emailWrapper"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+ 
+    <EditText
+        android:id="@+id/user_email"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textEmailAddress"
+        android:hint="Email"/>
+   
+</android.support.design.widget.TextInputLayout>
+```
+Initialize reference to `TextInutLayout`.
+
+```java
+final TextInputLayout emailWrapper = (TextInputLayout) findViewById(R.id.emailWrapper);
+```
+To animate floating lable as per material design guide lines, use `setHint` method,
+```java
+emailWrapper.setHint("Email");
 ```
 
 ## PROJECT LICENSE
