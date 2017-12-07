@@ -42,7 +42,7 @@ public class MainActivity extends AppCompatActivity
 
         // Find the View with id empty_view in res/layout/list.xml
         View emptyView = findViewById(R.id.empty_view);
-        // Set the emptyView on ListView, to dosplay the "No content" text
+        // Set the emptyView on ListView, to display the "No content" text
         // when there is no item display on ListView
         itemListView.setEmptyView(emptyView);
 
