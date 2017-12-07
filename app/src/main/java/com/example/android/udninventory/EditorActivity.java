@@ -179,7 +179,7 @@ public class EditorActivity extends AppCompatActivity
                     // Convert the string value into integer
                     Integer itemQuantity = Integer.parseInt(itemQuantityString);
                     itemQuantity += 1;
-                    mItemQuantity.setText(itemQuantity + "");
+                    mItemQuantity.setText(String.valueOf(itemQuantity));
                 }
             }
         });
@@ -201,7 +201,7 @@ public class EditorActivity extends AppCompatActivity
                     } else {
                         itemQuantity = 0;
                     }
-                    mItemQuantity.setText(itemQuantity + "");
+                    mItemQuantity.setText(String.valueOf(itemQuantity));
                 }
             }
         });
