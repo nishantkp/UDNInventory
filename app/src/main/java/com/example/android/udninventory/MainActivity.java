@@ -1,5 +1,6 @@
 package com.example.android.udninventory;
 
+import android.app.ActivityOptions;
 import android.content.ContentUris;
 import android.content.ContentValues;
 import android.content.Intent;
@@ -67,8 +68,18 @@ public class MainActivity extends AppCompatActivity
                 Intent intent = new Intent(MainActivity.this, OverviewActivity.class);
                 // Set uri as data field for Intent
                 intent.setData(currentItemUri);
-                // Launch the {@link EditorActivity} to display the current pet
-                startActivity(intent);
+                ActivityOptions options = null;
+                // If current SDK build is greater that API 16, then only perform scale up animation
+                // to start {@link Overview Activity}
+                if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.JELLY_BEAN) {
+                    options = ActivityOptions.makeScaleUpAnimation(view, 0,
+                            0, view.getWidth(), view.getHeight());
+                    // Launch the {@link OverviewActivity} to display the current pet
+                    startActivity(intent, options.toBundle());
+                } else {
+                    // Otherwise current SDK build is less than 16, so start activity as usual
+                    startActivity(intent);
+                }
             }
         });
 
