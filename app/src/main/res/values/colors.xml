@@ -24,4 +24,15 @@
     <!-- Color scheme for quantity on list layout -->
     <color name="quantityValueZero">#F44336</color>
     <color name="quantityValueBelowLimit">#FF9800</color>
+
+    <!-- Color scheme for login screens-->
+    <color name="loginColorPrimary">#212121</color>
+    <color name="loginColorPrimaryDark">#121212</color>
+    <color name="loginColorAccent">#2979FF</color>
+    <color name="iron">#fefefe</color>
+
+    <!-- login screen background color gradient -->
+    <color name="gradientStartColor">#ff1744</color>
+    <color name="gradientCenterColor">#ff3744</color>
+    <color name="gradientEndColor">#ff5744</color>
 </resources>

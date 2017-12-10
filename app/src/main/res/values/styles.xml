@@ -15,6 +15,21 @@
         <item name="colorAccent">@color/colorAccentEditor</item>
     </style>
 
+    <!-- Login screen theme -->
+    <style name="LoginTheme" parent="Theme.AppCompat.NoActionBar">
+        <item name="colorPrimary">@color/loginColorPrimary</item>
+        <item name="colorPrimaryDark">@color/loginColorPrimaryDark</item>
+        <item name="colorAccent">@color/loginColorAccent</item>
+        <item name="colorButtonNormal">@color/colorAccent</item>
+    </style>
+
+    <!-- Login screen dialog theme -->
+    <style name="LoginTheme.Dark.Dialog" parent="Theme.AppCompat.Dialog">
+        <item name="colorAccent">@color/loginColorAccent</item>
+        <item name="android:textColorPrimary">@color/primaryWhiteColor</item>
+        <item name="android:background">@color/loginColorPrimary</item>
+    </style>
+
     <!-- Catalog activity button style-->
     <style name="catalog_activity_button_style">
         <item name="android:layout_height">wrap_content</item>

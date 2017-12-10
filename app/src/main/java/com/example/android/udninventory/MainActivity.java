@@ -22,6 +22,7 @@ import android.widget.ListView;
 
 import com.example.android.udninventory.data.ItemBitmapUtils;
 import com.example.android.udninventory.data.ItemContract.ItemEntry;
+import com.example.android.udninventory.login.MainLoginActivity;
 
 public class MainActivity extends AppCompatActivity
         implements LoaderManager.LoaderCallbacks<Cursor> {
@@ -37,6 +38,10 @@ public class MainActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.list);
+
+        // Start the login screen to authenticate the user
+        Intent loginIntent = new Intent(MainActivity.this, MainLoginActivity.class);
+        startActivity(loginIntent);
 
         // Find the ListView which will be populated with item data
         ListView itemListView = findViewById(R.id.list);
