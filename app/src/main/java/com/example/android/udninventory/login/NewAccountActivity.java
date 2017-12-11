@@ -130,11 +130,10 @@ public class NewAccountActivity extends AppCompatActivity {
                 // If inserting data was successful, finish the activity
                 if (uri != null) {
                     finish();
-                } else {
-                    mCreateAccountButton.setEnabled(true);
                 }
             }
         });
+        mCreateAccountButton.setEnabled(true);
     }
 
     /**
