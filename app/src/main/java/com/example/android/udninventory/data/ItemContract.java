@@ -33,6 +33,11 @@ public class ItemContract {
      */
     public static final String ITEM_PATH = "items";
 
+    /**
+     * Possible path, i.e, content://com.example.inventory/credentials/ is a valid path for inventory
+     * login details
+     */
+    public static final String CREDENTIALS_PATH = "credentials";
 
     // To prevent someone from accidentally instantiating contract class,
     // give it an empty constructor
@@ -45,6 +50,11 @@ public class ItemContract {
          * The content Uri to access the item data from the in the provider
          */
         public static final Uri CONTENT_URI = Uri.withAppendedPath(BASE_CONTENT_URI, ITEM_PATH);
+
+        /**
+         * Content Uri to access the login information
+         */
+        public static final Uri CREDENTIALS_CONTENT_URI = Uri.withAppendedPath(BASE_CONTENT_URI, CREDENTIALS_PATH);
 
         /**
          * MIME type of the {@link #CONTENT_URI} for list of items
@@ -62,6 +72,29 @@ public class ItemContract {
          * Name of database table for inventory
          */
         public static final String TABLE_NAME = "items";
+
+        /**
+         * Name of database table for username and passwords
+         */
+        public static final String CREDENTIALS_TABLE_NAME = "credentials";
+
+        /**
+         * Name of the user
+         * Type: TEXT
+         */
+        public static final String CREDENTIALS_TABLE_COLUMN_USER_NAME = "user_name";
+
+        /**
+         * Email of user
+         * Type: TEXT
+         */
+        public static final String CREDENTIALS_TABLE_COLUMN_EMAIL = "email";
+
+        /**
+         * password set ny user
+         * Type: TEXT
+         */
+        public static final String CREDENTIALS_TABLE_COLUMN_PASSWORD = "password";
 
         /**
          * Unique ID number for an Item (only for use in the database table).

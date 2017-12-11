@@ -36,6 +36,8 @@ public class ItemProvider extends ContentProvider {
      * URI matched code for a single item from the table
      */
     private static final int ITEM_ID = 101;
+    private static final int CREDENTIALS = 102;
+    private static final int CREDENTIALS_ID = 103;
     /**
      * UriMatcher object to match the context URI to corresponding code
      */
@@ -56,6 +58,16 @@ public class ItemProvider extends ContentProvider {
         // i.e content://com.example.android.inventory/items/5 matches but
         // content://com.example.android.inventory/items doesn't match
         sUriMatcher.addURI(ItemContract.CONTENT_AUTHORITY, ItemContract.ITEM_PATH + "/#", ITEM_ID);
+
+        // The content uri of form "content://com.example.android.inventory/credentials" will
+        // maps to integer value of {@link CREDENTIALS} 102. This uri gives access to multiple
+        // rows of credentials table
+        sUriMatcher.addURI(ItemContract.CONTENT_AUTHORITY, ItemContract.CREDENTIALS_PATH, CREDENTIALS);
+
+        // The content uri of form "content://com.example.android.inventory/credentials/#" will
+        // maps to integer value of {@link CREDENTIALS_ID} 103. This uri gives access to particular
+        // row of credentials table
+        sUriMatcher.addURI(ItemContract.CONTENT_AUTHORITY, ItemContract.CREDENTIALS_PATH + "/#", CREDENTIALS_ID);
     }
 
     // Database helper object
@@ -107,6 +119,13 @@ public class ItemProvider extends ContentProvider {
                 cursor = database.query(ItemEntry.TABLE_NAME, projection, selection, selectionArgs,
                         null, null, sortOrder);
                 break;
+            case CREDENTIALS:
+                // Query the items table directly with given projection, selection, selectionArgs,
+                // and sort order
+                // The cursor could contain multiple rows of items table
+                cursor = database.query(ItemEntry.CREDENTIALS_TABLE_NAME, projection, selection, selectionArgs,
+                        null, null, sortOrder);
+                break;
             default:
                 throw new IllegalArgumentException("Can not query unknown URI " + uri);
         }
@@ -148,6 +167,8 @@ public class ItemProvider extends ContentProvider {
         switch (match) {
             case ITEM:
                 return insertItem(uri, values);
+            case CREDENTIALS:
+                return insertCredentials(uri, values);
             default:
                 throw new IllegalArgumentException("Insertion is not support for " + uri);
         }
@@ -251,6 +272,25 @@ public class ItemProvider extends ContentProvider {
         getContext().getContentResolver().notifyChange(uri, null);
 
         // Return the uri with ID ( ID of newly inserted row) appended at the end of URI
+        return ContentUris.withAppendedId(uri, id);
+    }
+
+    /**
+     * Insert a new account details into table
+     *
+     * @param uri           Uri of credentials table to insert new data
+     * @param contentValues details about new account
+     * @return Uri of newly inserted row
+     */
+    private Uri insertCredentials(Uri uri, ContentValues contentValues) {
+        // Get the writable database in order to insert a new credentials
+        SQLiteDatabase database = mItemDbHelper.getWritableDatabase();
+        // Insert new credentials into table
+        long id = database.insert(ItemEntry.CREDENTIALS_TABLE_NAME, null, contentValues);
+        if (id == -1) {
+            return null;
+        }
+        // Return the uri with ID (ID of newly inserted row) appended at the end of URI
         return ContentUris.withAppendedId(uri, id);
     }
 
