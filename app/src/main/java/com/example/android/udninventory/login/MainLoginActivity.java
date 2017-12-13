@@ -3,9 +3,14 @@ package com.example.android.udninventory.login;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.support.design.widget.CoordinatorLayout;
+import android.support.design.widget.Snackbar;
 import android.support.design.widget.TextInputLayout;
+import android.support.v4.app.LoaderManager;
+import android.support.v4.content.CursorLoader;
+import android.support.v4.content.Loader;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.view.View;
@@ -15,22 +20,25 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.example.android.udninventory.R;
+import com.example.android.udninventory.data.ItemContract.ItemEntry;
 
-public class MainLoginActivity extends AppCompatActivity {
+public class MainLoginActivity extends AppCompatActivity
+        implements LoaderManager.LoaderCallbacks<Cursor> {
 
+    /* Loader id for starting a loader when user hits login button */
+    private static final int LOGIN_LOADER_ID = 1;
     /* TextInput Wrappers */
     private TextInputLayout mUserEmailWrapper;
     private TextInputLayout mUserPasswordWrapper;
-
     /* EditText fields */
     private EditText mUserEmail;
     private EditText mUserPassword;
-
     /* Login button */
     private Button mLoginButton;
-
     /* Coordinator layout to display snack bar */
     private CoordinatorLayout mCoordinatorLayout;
+    /* Flag to check log is failed ot not */
+    private boolean LOGIN_FAILED_FLAG = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,7 +58,7 @@ public class MainLoginActivity extends AppCompatActivity {
             public void onClick(View view) {
                 // Hide the keyboard as soon as user hit the 'LOGIN' button
                 if (view != null) {
-                    InputMethodManager inputMethodManager = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+                    InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
                     assert inputMethodManager != null;
                     inputMethodManager.hideSoftInputFromWindow(view.getWindowToken(), 0);
                 }
@@ -88,7 +96,13 @@ public class MainLoginActivity extends AppCompatActivity {
             return;
         }
 
-        mLoginButton.setEnabled(false);
+        // Start the loader
+        getSupportLoaderManager().initLoader(LOGIN_LOADER_ID, null, this);
+        // If LOGIN_FAILED_FLAG is true, that means user has inserted incorrect user name/id/email or password
+        // So when user again enters the credentials and hit enter, restart the loader
+        if (LOGIN_FAILED_FLAG) {
+            getSupportLoaderManager().restartLoader(LOGIN_LOADER_ID, null, this);
+        }
 
         // Show progress dialog for better user experience
         final ProgressDialog progressDialog = new ProgressDialog(MainLoginActivity.this,
@@ -127,5 +141,71 @@ public class MainLoginActivity extends AppCompatActivity {
             mUserEmailWrapper.setErrorEnabled(false);
         }
         return validData;
+    }
+
+    @Override
+    public Loader<Cursor> onCreateLoader(int id, Bundle args) {
+        // Since we need to match User name and password, define a projection that contains
+        // all the parameters that we required
+        String[] projection = {
+                ItemEntry._ID,
+                ItemEntry.CREDENTIALS_TABLE_COLUMN_USER_NAME,
+                ItemEntry.CREDENTIALS_TABLE_COLUMN_EMAIL,
+                ItemEntry.CREDENTIALS_TABLE_COLUMN_PASSWORD};
+
+        // Where clause, because we are interested in row from table
+        // which contains an email provided by user
+        String selection = ItemEntry.CREDENTIALS_TABLE_COLUMN_EMAIL + "=?";
+
+        // Get the email provided by user and pass that email as selectionArd
+        String email = mUserEmail.getText().toString().trim();
+        String[] selectionArgs = new String[]{email};
+
+        return new CursorLoader(
+                this,                       // Context of app
+                ItemEntry.CREDENTIALS_CONTENT_URI,  // URI for whole credential table
+                projection,                         // Projection of which column from table that we are interested in
+                selection,                          // Where clause
+                selectionArgs,                      // Selection arguments
+                null);                     // Sort order to null
+    }
+
+    @Override
+    public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
+        // If there is no row present in cursor with given user ID/ user email
+        // Display toast message for incorrect username or password
+        if (data.getCount() <= 0) {
+            Snackbar.make(mCoordinatorLayout, "Username or password is incorrect", Snackbar.LENGTH_SHORT).show();
+            // Set the LOGIN_FAILED_FLAG to true
+            LOGIN_FAILED_FLAG = true;
+            data.close();
+            return;
+        }
+        // Get the data from first row of the Cursor object
+        if (data.moveToNext()) {
+            if (data.isFirst()) {
+                data.moveToFirst();
+                int passwordIndex = data.getColumnIndex(ItemEntry.CREDENTIALS_TABLE_COLUMN_PASSWORD);
+                String password = data.getString(passwordIndex);
+                String userEnteredPassword = mUserPassword.getText().toString().trim();
+                // If the password in the database matches the password entered by user, show message
+                // for correct password in snack bar else show message incorrect password
+                if (password.equals(userEnteredPassword)) {
+                    // Set the LOGIN_FAILED_FLAG to false
+                    LOGIN_FAILED_FLAG = false;
+                    Snackbar.make(mCoordinatorLayout, "Correct password", Snackbar.LENGTH_SHORT).show();
+                } else {
+                    // Set the LOGIN_FAILED_FLAG to true
+                    LOGIN_FAILED_FLAG = true;
+                    Snackbar.make(mCoordinatorLayout, "Incorrect password", Snackbar.LENGTH_SHORT).show();
+                }
+            }
+        }
+        // Close the cursor after its usage
+        data.close();
+    }
+
+    @Override
+    public void onLoaderReset(Loader<Cursor> loader) {
     }
 }
