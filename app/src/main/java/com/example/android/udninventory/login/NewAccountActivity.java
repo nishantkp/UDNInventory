@@ -248,12 +248,15 @@ public class NewAccountActivity extends AppCompatActivity
         String name = mUserName.getText().toString().trim();
         String email = mUserEmail.getText().toString().trim();
         String password = mUserPassword.getText().toString().trim();
+        String tableName = email.replace(".", "_");
+        tableName = tableName.replace("@", "_");
 
         // Content value object to insert data entered by user into database
         final ContentValues contentValues = new ContentValues();
         contentValues.put(ItemEntry.CREDENTIALS_TABLE_COLUMN_USER_NAME, name);
         contentValues.put(ItemEntry.CREDENTIALS_TABLE_COLUMN_EMAIL, email);
         contentValues.put(ItemEntry.CREDENTIALS_TABLE_COLUMN_PASSWORD, password);
+        contentValues.put(ItemEntry.CREDENTIALS_TABLE_USER_INVENTORY_TABLE, tableName);
 
         // Run AsyncTask to add data into database in background thread,
         // without disturbing UI thread

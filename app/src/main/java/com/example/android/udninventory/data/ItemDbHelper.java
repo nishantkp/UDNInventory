@@ -15,7 +15,7 @@ public class ItemDbHelper extends SQLiteOpenHelper {
 
     // Version of database, if you change the schema
     // you must increment the database version
-    public static final int DATABASE_VERSION = 3;
+    public static final int DATABASE_VERSION = 5;
 
     // Name of database file
     public static final String DATABASE_NAME = "inventory.db";
@@ -39,7 +39,8 @@ public class ItemDbHelper extends SQLiteOpenHelper {
                     + " INTEGER PRIMARY KEY AUTOINCREMENT" + ","
                     + ItemEntry.CREDENTIALS_TABLE_COLUMN_USER_NAME + " TEXT NOT NULL" + ","
                     + ItemEntry.CREDENTIALS_TABLE_COLUMN_EMAIL + " TEXT NOT NULL" + ","
-                    + ItemEntry.CREDENTIALS_TABLE_COLUMN_PASSWORD + " TEXT NOT NULL" + ")";
+                    + ItemEntry.CREDENTIALS_TABLE_COLUMN_PASSWORD + " TEXT NOT NULL" + ","
+                    + ItemEntry.CREDENTIALS_TABLE_USER_INVENTORY_TABLE + " TEXT NOT NULL" + ")";
 
     // String containing SQL statement to delete table
     public static final String SQL_DELETE_ENTRIES =

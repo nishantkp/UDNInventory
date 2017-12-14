@@ -97,6 +97,12 @@ public class ItemContract {
         public static final String CREDENTIALS_TABLE_COLUMN_PASSWORD = "password";
 
         /**
+         * Table name to be for user inventory
+         * Type : TEXT
+         */
+        public static final String CREDENTIALS_TABLE_USER_INVENTORY_TABLE = "table_name";
+
+        /**
          * Unique ID number for an Item (only for use in the database table).
          * Type: INTEGER
          */
