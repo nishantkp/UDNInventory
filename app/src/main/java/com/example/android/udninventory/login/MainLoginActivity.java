@@ -19,6 +19,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.example.android.udninventory.Constants.PublicKeys;
+import com.example.android.udninventory.MainActivity;
 import com.example.android.udninventory.R;
 import com.example.android.udninventory.data.ItemContract.ItemEntry;
 
@@ -207,6 +209,9 @@ public class MainLoginActivity extends AppCompatActivity
                                     progressDialog.dismiss();
                                 }
                             }, 2500);
+                    Intent loginToUserSpecificDatabase = new Intent(MainLoginActivity.this, MainActivity.class);
+                    loginToUserSpecificDatabase.putExtra(PublicKeys.LOGIN_TABLE_NAME_INTENT_KEY, tableName);
+                    startActivity(loginToUserSpecificDatabase);
                     Snackbar.make(mCoordinatorLayout, "Correct password", Snackbar.LENGTH_SHORT).show();
                 } else {
                     // Set the LOGIN_FAILED_FLAG to true

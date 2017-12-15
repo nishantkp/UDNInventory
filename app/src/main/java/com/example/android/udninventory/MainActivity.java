@@ -20,6 +20,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
+import com.example.android.udninventory.Constants.PublicKeys;
 import com.example.android.udninventory.data.ItemBitmapUtils;
 import com.example.android.udninventory.data.ItemContract.ItemEntry;
 import com.example.android.udninventory.login.MainLoginActivity;
@@ -34,15 +35,24 @@ public class MainActivity extends AppCompatActivity
     private static final int LOADER_ID = 0;
     private ItemCursorAdapter mItemCursorAdapter;
 
+    private String mTableNameForUserInventory;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.list);
 
-        // Start the login screen to authenticate the user
-        Intent loginIntent = new Intent(MainActivity.this, MainLoginActivity.class);
-        startActivity(loginIntent);
-
+        // Get the intent sent from MainLoginActivity
+        Intent loginToUserAccount = getIntent();
+        // Get the table name from intent sent from MainLoginActivity
+        mTableNameForUserInventory = loginToUserAccount.getStringExtra(PublicKeys.LOGIN_TABLE_NAME_INTENT_KEY);
+        // If we have not received any intent that means, user has just started the app
+        // So send them to login activity to enter their credentials
+        if (mTableNameForUserInventory == null) {
+            // Start the login screen to authenticate the user
+            Intent loginIntent = new Intent(MainActivity.this, MainLoginActivity.class);
+            startActivity(loginIntent);
+        }
         // Find the ListView which will be populated with item data
         ListView itemListView = findViewById(R.id.list);
 
