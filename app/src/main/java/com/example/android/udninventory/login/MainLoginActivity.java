@@ -144,7 +144,8 @@ public class MainLoginActivity extends AppCompatActivity
                 ItemEntry._ID,
                 ItemEntry.CREDENTIALS_TABLE_COLUMN_USER_NAME,
                 ItemEntry.CREDENTIALS_TABLE_COLUMN_EMAIL,
-                ItemEntry.CREDENTIALS_TABLE_COLUMN_PASSWORD};
+                ItemEntry.CREDENTIALS_TABLE_COLUMN_PASSWORD,
+                ItemEntry.CREDENTIALS_TABLE_USER_INVENTORY_TABLE};
 
         // Where clause, because we are interested in row from table
         // which contains an email provided by user
@@ -179,7 +180,11 @@ public class MainLoginActivity extends AppCompatActivity
             if (data.isFirst()) {
                 data.moveToFirst();
                 int passwordIndex = data.getColumnIndex(ItemEntry.CREDENTIALS_TABLE_COLUMN_PASSWORD);
+                int tableNameIndex = data.getColumnIndex(ItemEntry.CREDENTIALS_TABLE_USER_INVENTORY_TABLE);
                 String password = data.getString(passwordIndex);
+                // Get the table name, which we need to send to main activity to create new table with that name
+                // to create inventory database for user
+                String tableName = data.getString(tableNameIndex);
                 String userEnteredPassword = mUserPassword.getText().toString().trim();
                 // If the password in the database matches the password entered by user, show message
                 // for correct password in snack bar else show message incorrect password
