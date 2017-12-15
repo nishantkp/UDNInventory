@@ -103,13 +103,6 @@ public class MainLoginActivity extends AppCompatActivity
         if (LOGIN_FAILED_FLAG) {
             getSupportLoaderManager().restartLoader(LOGIN_LOADER_ID, null, this);
         }
-
-        // Show progress dialog for better user experience
-        final ProgressDialog progressDialog = new ProgressDialog(MainLoginActivity.this,
-                R.style.LoginTheme_Dark_Dialog);
-        progressDialog.setIndeterminate(true);
-        progressDialog.setMessage("Authenticating...");
-        progressDialog.show();
     }
 
     /**
@@ -193,6 +186,22 @@ public class MainLoginActivity extends AppCompatActivity
                 if (password.equals(userEnteredPassword)) {
                     // Set the LOGIN_FAILED_FLAG to false
                     LOGIN_FAILED_FLAG = false;
+                    // Show progress dialog for better user experience
+                    final ProgressDialog progressDialog = new ProgressDialog(
+                            MainLoginActivity.this,
+                            R.style.LoginTheme_Dark_Dialog);
+                    progressDialog.setIndeterminate(true);
+                    progressDialog.setMessage("Authenticating...");
+                    progressDialog.show();
+                    // Prevent Progress dialog from dismissing when user click on rest of the screen
+                    progressDialog.setCancelable(false);
+                    // Show dialog for 2.5s and dismiss it
+                    new android.os.Handler().postDelayed(
+                            new Runnable() {
+                                public void run() {
+                                    progressDialog.dismiss();
+                                }
+                            }, 2500);
                     Snackbar.make(mCoordinatorLayout, "Correct password", Snackbar.LENGTH_SHORT).show();
                 } else {
                     // Set the LOGIN_FAILED_FLAG to true
