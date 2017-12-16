@@ -753,12 +753,12 @@ public class EditorActivity extends AppCompatActivity
         emailIntent.setData(Uri.parse("mailto:" + email));
 
         // Email subject line
-        emailIntent.putExtra(Intent.EXTRA_SUBJECT, "New order for " + itemName);
+        emailIntent.putExtra(Intent.EXTRA_SUBJECT, getString(R.string.email_subject_line) + " " + itemName);
 
         // Email body
-        emailIntent.putExtra(Intent.EXTRA_TEXT, "Good day,\nI would like to place an order for "
-                + itemName + " for total quantity of "
-                + quantity + "." + "\n\nThanks and have a great day!");
+        emailIntent.putExtra(Intent.EXTRA_TEXT, getString(R.string.email_part_one) + " "
+                + itemName + " " + getString(R.string.email_part_two) + " "
+                + quantity + "." + getString(R.string.email_part_three));
 
         // Check there is an email app available on device to handle intent,
         // if not then don't start the activity

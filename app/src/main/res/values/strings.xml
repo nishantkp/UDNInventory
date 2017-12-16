@@ -107,4 +107,12 @@
 
     <!-- Error message for invalid name [CHAT LIMIT=25]-->
     <string name="text_layout_invalid_name">at least 3 letters</string>
+
+    <!-- Email body when sending email to supplier -->
+    <string name="email_part_one">Good day,\nI would like to place an order for</string>
+    <string name="email_part_two">for total quantity of</string>
+    <string name="email_part_three">\n\nThanks and have a great day!</string>
+
+    <!-- Email subject line when sending email to supplier [CHAR LIMIT=20] -->
+    <string name="email_subject_line">New order for</string>
 </resources>
