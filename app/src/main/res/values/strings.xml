@@ -13,6 +13,9 @@
     <!-- Title for the activity to add a new item [CHAR LIMIT=20] -->
     <string name="catalog_menu_add_item_title">Add Item</string>
 
+    <!-- Title for the activity to logout [CHAR LIMIT=20] -->
+    <string name="catalog_menu_logout_title">Logout</string>
+
     <!-- Toast message for error saving item [CHAR LIMIT=20] -->
     <string name="error_saving_item">Error saving item</string>
 
@@ -121,4 +124,7 @@
 
     <!-- Toast message when successfully deleted item from database [CHAR LIMIT=20] -->
     <string name="item_deleted_toast">Item deleted</string>
+
+    <!-- Progress dialog message whe user is logging out [CHAR LIMIT=20]-->
+    <string name="logging_out">Logging out…</string>
 </resources>

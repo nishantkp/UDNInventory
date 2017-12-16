@@ -1,10 +1,12 @@
 package com.example.android.udninventory;
 
 import android.app.ActivityOptions;
+import android.app.ProgressDialog;
 import android.content.ContentUris;
 import android.content.ContentValues;
 import android.content.Intent;
 import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
@@ -24,6 +26,7 @@ import android.widget.ListView;
 import com.example.android.udninventory.data.ItemBitmapUtils;
 import com.example.android.udninventory.data.ItemContract.ItemEntry;
 import com.example.android.udninventory.data.ItemDbHelper;
+import com.example.android.udninventory.login.MainLoginActivity;
 
 public class InventoryListActivity extends AppCompatActivity
         implements LoaderManager.LoaderCallbacks<Cursor> {
@@ -109,6 +112,10 @@ public class InventoryListActivity extends AppCompatActivity
                 // Add dummy data (placeholder data)
                 insertDummyItem();
                 return true;
+            case R.id.logout:
+                // Logout and go to {@link MainLoginActivity}
+                logout();
+                return true;
         }
         return super.onOptionsItemSelected(item);
     }
@@ -140,6 +147,38 @@ public class InventoryListActivity extends AppCompatActivity
         // Insert a dummy data into item provider and returning the uri of newly inserted data
         Uri uri = getContentResolver().insert(ItemEntry.CONTENT_URI, contentValues);
         Log.i(LOG_TAG, "Uri for inserting a dummy data : " + uri);
+    }
+
+    /**
+     * This method is called to logout from the current profile
+     */
+    private void logout(){
+        ItemDbHelper itemDbHelper = new ItemDbHelper(this);
+        SQLiteDatabase sqLiteDatabase = itemDbHelper.getWritableDatabase();
+        // If the database is open, then close it
+        if(sqLiteDatabase.isOpen()){
+            sqLiteDatabase.close();
+        }
+
+        // Show the progress dialog for better user experience
+        final ProgressDialog progressDialog = new ProgressDialog(
+                InventoryListActivity.this,
+                R.style.LoginTheme_Dark_Dialog);
+        progressDialog.setIndeterminate(true);
+        progressDialog.setMessage(getString(R.string.logging_out));
+        progressDialog.show();
+        // Prevent Progress dialog from dismissing when user click on rest of the screen
+        progressDialog.setCancelable(false);
+        // Show dialog for 2.5s and dismiss it
+        new android.os.Handler().postDelayed(
+                new Runnable() {
+                    public void run() {
+                        progressDialog.dismiss();
+                    }
+                }, 2500);
+        // Jump to {@link MainLoginActivity} for user to enter new credentials
+        Intent loginIntent = new Intent(InventoryListActivity.this, MainLoginActivity.class);
+        startActivity(loginIntent);
     }
 
     @Override

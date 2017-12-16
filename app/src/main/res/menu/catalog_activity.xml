@@ -12,4 +12,9 @@
         android:id="@+id/add_dummy_data"
         android:title="Dummy Data"
         app:showAsAction="never" />
+
+    <item
+        android:id="@+id/logout"
+        android:title="@string/catalog_menu_logout_title"
+        app:showAsAction="never" />
 </menu>
