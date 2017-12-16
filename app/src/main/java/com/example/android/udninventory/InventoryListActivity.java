@@ -21,7 +21,6 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
-import com.example.android.udninventory.Constants.PublicKeys;
 import com.example.android.udninventory.data.ItemBitmapUtils;
 import com.example.android.udninventory.data.ItemContract.ItemEntry;
 import com.example.android.udninventory.data.ItemDbHelper;
@@ -36,27 +35,17 @@ public class InventoryListActivity extends AppCompatActivity
     private static final int LOADER_ID = 0;
     private ItemCursorAdapter mItemCursorAdapter;
 
-    /* Name of the table received from MainLoginActivity when user successfully login */
-    private String mTableNameForUserInventory;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.list);
-
-        // Get the intent sent from MainLoginActivity
-        Intent loginToUserAccount = getIntent();
-        // Get the table name from intent sent from MainLoginActivity
-        mTableNameForUserInventory = loginToUserAccount.getStringExtra(PublicKeys.LOGIN_TABLE_NAME_INTENT_KEY);
-        // Set the table name for in ItemDbHelper, which will be used bu ItemProvider to perform CURD operation
-        ItemDbHelper.setNewTableName(mTableNameForUserInventory);
 
         // Create a new table for a user in background thread without blocking UI thread
         AsyncTask.execute(new Runnable() {
             @Override
             public void run() {
                 ItemDbHelper itemDbHelper = new ItemDbHelper(getApplicationContext());
-                itemDbHelper.createDatabaseTable(mTableNameForUserInventory);
+                itemDbHelper.createDatabaseTable(ItemDbHelper.getNewTableName());
             }
         });
 
@@ -186,5 +175,10 @@ public class InventoryListActivity extends AppCompatActivity
     @Override
     public void onLoaderReset(Loader<Cursor> loader) {
         mItemCursorAdapter.swapCursor(null);
+    }
+
+    @Override
+    public void onBackPressed() {
+        moveTaskToBack(true);
     }
 }
