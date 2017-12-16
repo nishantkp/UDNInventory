@@ -36,6 +36,7 @@
             android:name=".OverviewActivity"
             android:noHistory="true"
             android:parentActivityName=".InventoryListActivity"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
