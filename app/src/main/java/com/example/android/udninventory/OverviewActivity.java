@@ -27,7 +27,7 @@ public class OverviewActivity extends AppCompatActivity
     private static final int LOADER_ID = 0;
     /* Tag for log messages */
     private static final String LOG_TAG = OverviewActivity.class.getName();
-    /* Stores the Uri received from MainActivity */
+    /* Stores the Uri received from InventoryListActivity */
     private Uri mCurrentItemUri;
     /* TextView for name of item */
     private TextView mItemName;

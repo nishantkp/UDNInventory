@@ -26,11 +26,11 @@ import com.example.android.udninventory.data.ItemBitmapUtils;
 import com.example.android.udninventory.data.ItemContract.ItemEntry;
 import com.example.android.udninventory.data.ItemDbHelper;
 
-public class MainActivity extends AppCompatActivity
+public class InventoryListActivity extends AppCompatActivity
         implements LoaderManager.LoaderCallbacks<Cursor> {
 
     /* Tag for log messages */
-    private static final String LOG_TAG = MainActivity.class.getName();
+    private static final String LOG_TAG = InventoryListActivity.class.getName();
 
     /* Loader ID */
     private static final int LOADER_ID = 0;
@@ -87,7 +87,7 @@ public class MainActivity extends AppCompatActivity
                 Uri currentItemUri = ContentUris.withAppendedId(ItemEntry.CONTENT_URI, id);
 
                 // Create a new intent to go to {@link OverviewActivity} to display overview
-                Intent intent = new Intent(MainActivity.this, OverviewActivity.class);
+                Intent intent = new Intent(InventoryListActivity.this, OverviewActivity.class);
                 // Set uri as data field for Intent
                 intent.setData(currentItemUri);
                 ActivityOptions options = null;
@@ -113,7 +113,7 @@ public class MainActivity extends AppCompatActivity
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.new_item_add:
-                Intent intent = new Intent(MainActivity.this, EditorActivity.class);
+                Intent intent = new Intent(InventoryListActivity.this, EditorActivity.class);
                 startActivity(intent);
                 return true;
             case R.id.add_dummy_data:

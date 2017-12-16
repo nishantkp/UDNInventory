@@ -14,7 +14,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true">
         <activity
-            android:name=".MainActivity"
+            android:name=".InventoryListActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme"/>
 
@@ -26,20 +26,20 @@
         <activity
             android:name=".EditorActivity"
             android:configChanges="orientation|screenSize"
-            android:parentActivityName=".MainActivity"
+            android:parentActivityName=".InventoryListActivity"
             android:theme="@style/EditorTheme">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".MainActivity" />
+                android:value=".InventoryListActivity" />
         </activity>
         <activity
             android:name=".OverviewActivity"
             android:noHistory="true"
-            android:parentActivityName=".MainActivity"
+            android:parentActivityName=".InventoryListActivity"
             android:theme="@style/AppTheme">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".MainActivity" />
+                android:value=".InventoryListActivity" />
         </activity>
         <activity
             android:name=".login.MainLoginActivity"

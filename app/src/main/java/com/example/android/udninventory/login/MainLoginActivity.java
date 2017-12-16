@@ -20,7 +20,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.example.android.udninventory.Constants.PublicKeys;
-import com.example.android.udninventory.MainActivity;
+import com.example.android.udninventory.InventoryListActivity;
 import com.example.android.udninventory.R;
 import com.example.android.udninventory.data.ItemContract.ItemEntry;
 import com.example.android.udninventory.data.ItemDbHelper;
@@ -211,7 +211,7 @@ public class MainLoginActivity extends AppCompatActivity
                                 }
                             }, 2500);
                     ItemDbHelper.setNewTableName(tableName);
-                    Intent loginToUserSpecificDatabase = new Intent(MainLoginActivity.this, MainActivity.class);
+                    Intent loginToUserSpecificDatabase = new Intent(MainLoginActivity.this, InventoryListActivity.class);
                     loginToUserSpecificDatabase.putExtra(PublicKeys.LOGIN_TABLE_NAME_INTENT_KEY, tableName);
                     startActivity(loginToUserSpecificDatabase);
                     Snackbar.make(mCoordinatorLayout, "Correct password", Snackbar.LENGTH_SHORT).show();

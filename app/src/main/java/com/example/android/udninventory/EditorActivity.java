@@ -70,7 +70,7 @@ public class EditorActivity extends AppCompatActivity
     private Button mIncreaseQuantity;
     /* Button for placing new order*/
     private Button mPlaceOrder;
-    /* Stores the Uri received from MainActivity */
+    /* Stores the Uri received from InventoryListActivity */
     private Uri mCurrentItemUri;
     /* Will be true if user updates the part of form */
     private boolean mItemHasChanged = false;
@@ -308,7 +308,7 @@ public class EditorActivity extends AppCompatActivity
                         backToOverviewActivityIntent(mNewlyInsertedRowUri);
                     } else {
                         // If user clicks save button, without inserting any details for item
-                        // Go directly to parent activity {@link MainActivity}
+                        // Go directly to parent activity {@link InventoryListActivity}
                         finish();
                     }
                 }
@@ -326,7 +326,7 @@ public class EditorActivity extends AppCompatActivity
                 }
 
                 // If user is adding a new item, finish the activity and return to
-                // {@link MainActivity}
+                // {@link InventoryListActivity}
                 if (mCurrentItemUri == null) {
                     finish();
                     return true;
@@ -342,7 +342,7 @@ public class EditorActivity extends AppCompatActivity
                         // User clicked in discard button navigate up to parent activity
                         //NavUtils.navigateUpFromSameTask(EditorActivity.this);
                         // If we are creating a new item,
-                        // so when user clicks on "Discard" button go to {@link MainActivity}
+                        // so when user clicks on "Discard" button go to {@link InventoryListActivity}
                         if (mCurrentItemUri == null) {
                             finish();
                         } else {
@@ -673,7 +673,7 @@ public class EditorActivity extends AppCompatActivity
         }
 
         // If we are creating a new item and user clicks back button,
-        // go directly to parent activity {@link MainActivity}
+        // go directly to parent activity {@link InventoryListActivity}
         if (mCurrentItemUri == null) {
             finish();
             return;
@@ -685,7 +685,7 @@ public class EditorActivity extends AppCompatActivity
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 // If we are creating a new item,
-                // so when user clicks on "Discard" button then go to {@link MainActivity}
+                // so when user clicks on "Discard" button then go to {@link InventoryListActivity}
                 if (mCurrentItemUri == null) {
                     finish();
                 } else {
