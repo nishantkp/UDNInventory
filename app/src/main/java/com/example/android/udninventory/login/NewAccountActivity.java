@@ -135,7 +135,7 @@ public class NewAccountActivity extends AppCompatActivity
         // If the Name text field is empty or Name is less then 3 characters,
         // give user a error message
         if (TextUtils.isEmpty(name) || name.length() < 3) {
-            mUserNameWrapper.setError("at least 3 letters");
+            mUserNameWrapper.setError(getString(R.string.text_layout_invalid_name));
             validData = false;
         } else {
             mUserNameWrapper.setErrorEnabled(false);
@@ -144,7 +144,7 @@ public class NewAccountActivity extends AppCompatActivity
         // If the email text field is empty or email address is not per EMAIL_ADDRESS pattern,
         // give user a error message
         if (TextUtils.isEmpty(email) || !android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
-            mUserEmailWrapper.setError("enter valid email address");
+            mUserEmailWrapper.setError(getString(R.string.text_layout_invalid_email));
             validData = false;
         } else {
             mUserEmailWrapper.setErrorEnabled(false);
@@ -153,7 +153,7 @@ public class NewAccountActivity extends AppCompatActivity
         // If the password text field is emory or password is not between 5 and 8 digits,
         // give user a error message
         if (TextUtils.isEmpty(password) || password.length() < 5 || password.length() > 8) {
-            mUserPasswordWrapper.setError("between 5 and 8 digits");
+            mUserPasswordWrapper.setError(getString(R.string.text_layout_invalid_password));
             validData = false;
         } else {
             mUserEmailWrapper.setErrorEnabled(false);

@@ -92,4 +92,19 @@
 
     <!-- Error message for editor supplier email EditText [CHAR LIMIT=45] -->
     <string name="editor_supplier_email_not_valid">Not a valid email address</string>
+
+    <!-- Progress dialog text [CHAR LIMIT=20] -->
+    <string name="login_authenticating">Authenticating…</string>
+
+    <!-- Error message for user name or password incorrect [CHAR LIMIT=50] -->
+    <string name="login_user_name_password_incorrect">Username or password is incorrect</string>
+
+    <!-- Error message for invalid email address [CHAT LIMIT=30]-->
+    <string name="text_layout_invalid_email">enter valid email address</string>
+
+    <!-- Error message for invalid password [CHAT LIMIT=35]-->
+    <string name="text_layout_invalid_password">between 5 and 8 digits</string>
+
+    <!-- Error message for invalid name [CHAT LIMIT=25]-->
+    <string name="text_layout_invalid_name">at least 3 letters</string>
 </resources>

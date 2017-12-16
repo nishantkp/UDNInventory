@@ -122,7 +122,7 @@ public class MainLoginActivity extends AppCompatActivity
         // If the email text field is empty or email address is not per EMAIL_ADDRESS pattern,
         // give user a error message
         if (TextUtils.isEmpty(email) || !android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
-            mUserEmailWrapper.setError("enter valid email address");
+            mUserEmailWrapper.setError(getString(R.string.text_layout_invalid_email));
             validData = false;
         } else {
             mUserEmailWrapper.setErrorEnabled(false);
@@ -131,7 +131,7 @@ public class MainLoginActivity extends AppCompatActivity
         // If the password text field is emory or password is not between 5 and 8 digits,
         // give user a error message
         if (TextUtils.isEmpty(password) || password.length() < 5 || password.length() > 8) {
-            mUserPasswordWrapper.setError("between 5 and 8 digits");
+            mUserPasswordWrapper.setError(getString(R.string.text_layout_invalid_password));
             validData = false;
         } else {
             mUserEmailWrapper.setErrorEnabled(false);
@@ -172,7 +172,7 @@ public class MainLoginActivity extends AppCompatActivity
         // If there is no row present in cursor with given user ID/ user email
         // Display toast message for incorrect username or password
         if (data.getCount() <= 0) {
-            Snackbar.make(mCoordinatorLayout, "Username or password is incorrect", Snackbar.LENGTH_SHORT).show();
+            Snackbar.make(mCoordinatorLayout, getString(R.string.login_user_name_password_incorrect), Snackbar.LENGTH_SHORT).show();
             // Set the LOGIN_FAILED_FLAG to true
             LOGIN_FAILED_FLAG = true;
             data.close();
@@ -202,7 +202,7 @@ public class MainLoginActivity extends AppCompatActivity
                             MainLoginActivity.this,
                             R.style.LoginTheme_Dark_Dialog);
                     progressDialog.setIndeterminate(true);
-                    progressDialog.setMessage("Authenticating...");
+                    progressDialog.setMessage(getString(R.string.login_authenticating));
                     progressDialog.show();
                     // Prevent Progress dialog from dismissing when user click on rest of the screen
                     progressDialog.setCancelable(false);
@@ -223,7 +223,7 @@ public class MainLoginActivity extends AppCompatActivity
                 } else {
                     // Set the LOGIN_FAILED_FLAG to true
                     LOGIN_FAILED_FLAG = true;
-                    Snackbar.make(mCoordinatorLayout, "Username or password is incorrect", Snackbar.LENGTH_SHORT).show();
+                    Snackbar.make(mCoordinatorLayout, getString(R.string.login_user_name_password_incorrect), Snackbar.LENGTH_SHORT).show();
                 }
             }
         }
