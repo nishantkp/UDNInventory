@@ -15,14 +15,17 @@ public class ItemDbHelper extends SQLiteOpenHelper {
 
     // Version of database, if you change the schema
     // you must increment the database version
-    public static final int DATABASE_VERSION = 5;
+    public static final int DATABASE_VERSION = 6;
+
+    // Table name generated from user email address
+    private static String mTableName;
 
     // Name of database file
     public static final String DATABASE_NAME = "inventory.db";
 
     // String containing SQL statement to create table
-    public static final String SQL_CREATE_ENTRIES =
-            "CREATE TABLE " + ItemEntry.TABLE_NAME + "("
+    private static String SQL_CREATE_ENTRIES =
+            "CREATE TABLE " + getNewTableName() + "("
                     + ItemEntry._ID + " INTEGER PRIMARY KEY AUTOINCREMENT" + ","
                     + ItemEntry.COLUMN_ITEM_NAME + " TEXT NOT NULL" + ","
                     + ItemEntry.COLUMN_ITEM_PRICE + " REAL NOT NULL" + ","
@@ -58,14 +61,49 @@ public class ItemDbHelper extends SQLiteOpenHelper {
     // if it does exists, continue with the existing one
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
-        sqLiteDatabase.execSQL(SQL_CREATE_ENTRIES);
         sqLiteDatabase.execSQL(SQL_CREATE_LOGIN_ENTRIES);
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, int oldVersion, int newVersion) {
-        sqLiteDatabase.execSQL(SQL_DELETE_ENTRIES);
         sqLiteDatabase.execSQL(SQL_DELETE_LOGIN_ENTRIES);
         onCreate(sqLiteDatabase);
+    }
+
+    /**
+     * This method is called to set the table name
+     * @param tableName name of the table
+     */
+    public static void setNewTableName(String tableName) {
+        mTableName = tableName;
+    }
+
+    /**
+     * This method is called to get the table name
+     * @return name of the table
+     */
+    public static String getNewTableName() {
+        return mTableName;
+    }
+
+    /**
+     * This method is called to create a new table is it does not exists
+     * @param tableName name of the database table
+     */
+    public void createDatabaseTable(String tableName) {
+        // SQL statement for creating a new table for individual user to store inventory related data
+        String CREATE_ENTRIES =
+                "CREATE TABLE IF NOT EXISTS " + tableName + "("
+                        + ItemEntry._ID + " INTEGER PRIMARY KEY AUTOINCREMENT" + ","
+                        + ItemEntry.COLUMN_ITEM_NAME + " TEXT NOT NULL" + ","
+                        + ItemEntry.COLUMN_ITEM_PRICE + " REAL NOT NULL" + ","
+                        + ItemEntry.COLUMN_ITEM_CATEGORY + " TEXT" + ","
+                        + ItemEntry.COLUMN_ITEM_QUANTITY + " INTEGER NOT NULL DEFAULT 0" + ","
+                        + ItemEntry.COLUMN_SUPPLIER_NAME + " TEXT NOT NULL" + ","
+                        + ItemEntry.COLUMN_SUPPLIER_PHONE + " TEXT" + ","
+                        + ItemEntry.COLUMN_SUPPLIER_EMAIL + " TEXT" + ","
+                        + ItemEntry.COLUMN_ITEM_THUMBNAIL + " BLOB" + ")";
+        SQLiteDatabase sqLiteDatabase = getWritableDatabase();
+        sqLiteDatabase.execSQL(CREATE_ENTRIES);
     }
 }

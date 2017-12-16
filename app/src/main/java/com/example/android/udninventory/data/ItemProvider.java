@@ -102,7 +102,7 @@ public class ItemProvider extends ContentProvider {
                 // Query the items table directly with given projection, selection, selectionArgs,
                 // and sort order
                 // The cursor could contain multiple rows of items table
-                cursor = database.query(ItemEntry.TABLE_NAME, projection, selection, selectionArgs,
+                cursor = database.query(ItemDbHelper.getNewTableName(), projection, selection, selectionArgs,
                         null, null, sortOrder);
                 break;
             case ITEM_ID:
@@ -116,7 +116,7 @@ public class ItemProvider extends ContentProvider {
                 // only contains one element
                 selection = ItemEntry._ID + "=?";
                 selectionArgs = new String[]{String.valueOf(ContentUris.parseId(uri))};
-                cursor = database.query(ItemEntry.TABLE_NAME, projection, selection, selectionArgs,
+                cursor = database.query(ItemDbHelper.getNewTableName(), projection, selection, selectionArgs,
                         null, null, sortOrder);
                 break;
             case CREDENTIALS:
@@ -187,13 +187,13 @@ public class ItemProvider extends ContentProvider {
         switch (match) {
             case ITEM:
                 // Delete all the rows that matches selection and selectionArgs
-                rowsDeleted = database.delete(ItemEntry.TABLE_NAME, selection, selectionArgs);
+                rowsDeleted = database.delete(ItemDbHelper.getNewTableName(), selection, selectionArgs);
                 break;
             case ITEM_ID:
                 // Delete the single row given by id in URI
                 selection = ItemEntry._ID + "=?";
                 selectionArgs = new String[]{String.valueOf(ContentUris.parseId(uri))};
-                rowsDeleted = database.delete(ItemEntry.TABLE_NAME, selection, selectionArgs);
+                rowsDeleted = database.delete(ItemDbHelper.getNewTableName(), selection, selectionArgs);
                 break;
             default:
                 throw new IllegalArgumentException("Deletion is not supported for " + uri);
@@ -262,7 +262,7 @@ public class ItemProvider extends ContentProvider {
         // Get the writable database in order to insert a new item
         SQLiteDatabase database = mItemDbHelper.getWritableDatabase();
         // Insert a new item with given values
-        long id = database.insert(ItemEntry.TABLE_NAME, null, contentValues);
+        long id = database.insert(ItemDbHelper.getNewTableName(), null, contentValues);
         if (id == -1) {
             return null;
         }
@@ -340,7 +340,7 @@ public class ItemProvider extends ContentProvider {
         // Get the writable database
         SQLiteDatabase database = mItemDbHelper.getWritableDatabase();
         // Update the database and get the number of row affected
-        int rowsUpdated = database.update(ItemEntry.TABLE_NAME, contentValues, selection, selectionArgs);
+        int rowsUpdated = database.update(ItemDbHelper.getNewTableName(), contentValues, selection, selectionArgs);
 
         // If 1 or more rows were updated, then notify all listeners that the data at the
         // given URI has changed

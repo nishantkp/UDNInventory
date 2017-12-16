@@ -8,6 +8,7 @@ import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.CursorLoader;
@@ -23,7 +24,7 @@ import android.widget.ListView;
 import com.example.android.udninventory.Constants.PublicKeys;
 import com.example.android.udninventory.data.ItemBitmapUtils;
 import com.example.android.udninventory.data.ItemContract.ItemEntry;
-import com.example.android.udninventory.login.MainLoginActivity;
+import com.example.android.udninventory.data.ItemDbHelper;
 
 public class MainActivity extends AppCompatActivity
         implements LoaderManager.LoaderCallbacks<Cursor> {
@@ -46,13 +47,18 @@ public class MainActivity extends AppCompatActivity
         Intent loginToUserAccount = getIntent();
         // Get the table name from intent sent from MainLoginActivity
         mTableNameForUserInventory = loginToUserAccount.getStringExtra(PublicKeys.LOGIN_TABLE_NAME_INTENT_KEY);
-        // If we have not received any intent that means, user has just started the app
-        // So send them to login activity to enter their credentials
-        if (mTableNameForUserInventory == null) {
-            // Start the login screen to authenticate the user
-            Intent loginIntent = new Intent(MainActivity.this, MainLoginActivity.class);
-            startActivity(loginIntent);
-        }
+        // Set the table name for in ItemDbHelper, which will be used bu ItemProvider to perform CURD operation
+        ItemDbHelper.setNewTableName(mTableNameForUserInventory);
+
+        // Create a new table for a user in background thread without blocking UI thread
+        AsyncTask.execute(new Runnable() {
+            @Override
+            public void run() {
+                ItemDbHelper itemDbHelper = new ItemDbHelper(getApplicationContext());
+                itemDbHelper.createDatabaseTable(mTableNameForUserInventory);
+            }
+        });
+
         // Find the ListView which will be populated with item data
         ListView itemListView = findViewById(R.id.list);
 
