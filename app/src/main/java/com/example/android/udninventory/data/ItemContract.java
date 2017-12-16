@@ -69,6 +69,18 @@ public class ItemContract {
                 ContentResolver.CURSOR_ITEM_BASE_TYPE + "/" + CONTENT_AUTHORITY + "/" + ITEM_PATH;
 
         /**
+         * MIME type of the {@link #CONTENT_URI} for the list for credentials
+         */
+        public static final String CREDENTIALS_LIST_TYPE =
+                ContentResolver.CURSOR_DIR_BASE_TYPE + "/" + CONTENT_AUTHORITY + "/" + CREDENTIALS_PATH;
+
+        /**
+         * MIME type of the {@link #CONTENT_URI} for the single credential item
+         */
+        public static final String CREDENTIALS_ITEM_TYPE =
+                ContentResolver.CURSOR_ITEM_BASE_TYPE + "/" + CONTENT_AUTHORITY + "/" + CREDENTIALS_PATH;
+
+        /**
          * Name of database table for inventory
          */
         public static final String TABLE_NAME = "items";

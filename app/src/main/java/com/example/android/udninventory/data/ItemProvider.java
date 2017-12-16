@@ -157,6 +157,10 @@ public class ItemProvider extends ContentProvider {
                 return ItemEntry.CONTENT_LIST_TYPE;
             case ITEM_ID:
                 return ItemEntry.CONTENT_ITEM_TYPE;
+            case CREDENTIALS:
+                return ItemEntry.CREDENTIALS_LIST_TYPE;
+            case CREDENTIALS_ID:
+                return ItemEntry.CREDENTIALS_ITEM_TYPE;
             default:
                 throw new IllegalArgumentException("Unknown URI " + uri + " with match " + match);
         }
