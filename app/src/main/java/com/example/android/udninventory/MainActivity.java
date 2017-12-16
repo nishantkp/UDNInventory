@@ -36,6 +36,7 @@ public class MainActivity extends AppCompatActivity
     private static final int LOADER_ID = 0;
     private ItemCursorAdapter mItemCursorAdapter;
 
+    /* Name of the table received from MainLoginActivity when user successfully login */
     private String mTableNameForUserInventory;
 
     @Override
