@@ -28,6 +28,8 @@ import com.example.android.udninventory.R;
 import com.example.android.udninventory.data.ItemContract.ItemEntry;
 import com.example.android.udninventory.data.ItemDbHelper;
 
+import java.lang.ref.WeakReference;
+
 public class MainLoginActivity extends AppCompatActivity
         implements LoaderManager.LoaderCallbacks<Cursor> {
 
@@ -45,6 +47,9 @@ public class MainLoginActivity extends AppCompatActivity
     private CoordinatorLayout mCoordinatorLayout;
     /* Flag to check log is failed ot not */
     private boolean LOGIN_FAILED_FLAG = false;
+    /* Cursor to store credential information received from querying credentials
+    table with user entered email */
+    private Cursor mCrediantialData;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -172,7 +177,9 @@ public class MainLoginActivity extends AppCompatActivity
 
     @Override
     public void onLoadFinished(Loader<Cursor> loader, final Cursor data) {
-        checkCredentialsAgainstDatabaseAndLogin(data);
+       // checkCredentialsAgainstDatabaseAndLogin(data);
+        mCrediantialData = data;
+        new CheckCredentialsAgainstDatabaseAndLogin(this).execute();
     }
 
     @Override
@@ -270,5 +277,102 @@ public class MainLoginActivity extends AppCompatActivity
                 }
             }
         }.execute();
+    }
+
+    private static class CheckCredentialsAgainstDatabaseAndLogin extends AsyncTask<Void, Void, ContentValues> {
+
+        /* Stores the week reference to activity */
+        private WeakReference<MainLoginActivity> activityReference;
+
+        // Only retain a weak reference to the activity
+        CheckCredentialsAgainstDatabaseAndLogin(MainLoginActivity context) {
+            activityReference = new WeakReference<>(context);
+        }
+
+        @Override
+        protected ContentValues doInBackground(Void... voids) {
+
+            // get a reference to the activity if it is still there
+            MainLoginActivity activity = activityReference.get();
+
+            ContentValues contentValues = new ContentValues();
+            // If count is <= 0, than means there isn't any row in the database which contains
+            // the email address provided by user
+            if (activity.mCrediantialData.getCount() <= 0) {
+                contentValues.put(PublicKeys.LOGIN_FAILED_KEY, true);
+                // close the cursor after its usage
+                activity.mCrediantialData.close();
+                return contentValues;
+            }
+            // If there is a next row present then move to that row, because that row contains the
+            // email, password and table name for particular user
+            if (activity.mCrediantialData.moveToNext()) {
+                if (activity.mCrediantialData.isFirst()) {
+                    activity.mCrediantialData.moveToFirst();
+                    contentValues.put(PublicKeys.LOGIN_FAILED_KEY, false);
+                    int passwordIndex = activity.mCrediantialData.getColumnIndex(ItemEntry.CREDENTIALS_TABLE_COLUMN_PASSWORD);
+                    int tableNameIndex = activity.mCrediantialData.getColumnIndex(ItemEntry.CREDENTIALS_TABLE_USER_INVENTORY_TABLE);
+                    String password = activity.mCrediantialData.getString(passwordIndex);
+                    contentValues.put(PublicKeys.USER_PASSWORD_KEY, password);
+                    // Get the table name, which we need to send to main activity to create new table with that name
+                    // to create inventory database for user
+                    String tableName = activity.mCrediantialData.getString(tableNameIndex);
+                    contentValues.put(PublicKeys.USER_TABLE_NAME_KEY, tableName);
+                }
+            }
+            // close the cursor after its use
+            activity.mCrediantialData.close();
+            return contentValues;
+        }
+
+        @Override
+        protected void onPostExecute(ContentValues contentValues) {
+            // get a reference to the activity if it is still there
+            MainLoginActivity activity = activityReference.get();
+            if (contentValues.containsKey(PublicKeys.LOGIN_FAILED_KEY)) {
+                if (contentValues.getAsBoolean(PublicKeys.LOGIN_FAILED_KEY)) {
+                    Snackbar.make(activity.mCoordinatorLayout, activity.getString(R.string.login_user_name_password_incorrect), Snackbar.LENGTH_SHORT).show();
+                    // Set the LOGIN_FAILED_FLAG to true
+                    activity.LOGIN_FAILED_FLAG = true;
+                } else {
+                    String userEnteredPassword = activity.mUserPassword.getText().toString().trim();
+                    if (contentValues.getAsString(PublicKeys.USER_PASSWORD_KEY).equals(userEnteredPassword)) {
+                        // Remove the email id and password from their respective fields
+                        activity.mUserEmail.setText(null);
+                        activity.mUserPassword.setText(null);
+                        // Set the LOGIN_FAILED_FLAG to false
+                        activity.LOGIN_FAILED_FLAG = false;
+                        // Show progress dialog for better user experience
+                        final ProgressDialog progressDialog = new ProgressDialog(
+                                activity,
+                                R.style.LoginTheme_Dark_Dialog);
+                        progressDialog.setIndeterminate(true);
+                        progressDialog.setMessage(activity.getString(R.string.login_authenticating));
+                        progressDialog.show();
+                        // Prevent Progress dialog from dismissing when user click on rest of the screen
+                        progressDialog.setCancelable(false);
+                        // Show dialog for 2.5s and dismiss it
+                        new android.os.Handler().postDelayed(
+                                new Runnable() {
+                                    public void run() {
+                                        progressDialog.dismiss();
+                                    }
+                                }, 2500);
+                        // Set the table name in ItemDbHelper for user who just successfully login
+                        // into account which will be user to create a database table or performing CRUD
+                        // operations
+                        ItemDbHelper.setNewTableName(contentValues.getAsString(PublicKeys.USER_TABLE_NAME_KEY));
+                        Intent loginToUserSpecificDatabase = new Intent(activity, InventoryListActivity.class);
+                        activity.startActivity(loginToUserSpecificDatabase);
+                    } else {
+                        // Set the LOGIN_FAILED_FLAG to true
+                        activity.LOGIN_FAILED_FLAG = true;
+                        Snackbar.make(activity.mCoordinatorLayout, activity.getString(R.string.login_user_name_password_incorrect), Snackbar.LENGTH_SHORT).show();
+                    }
+                }
+
+            }
+
+        }
     }
 }
