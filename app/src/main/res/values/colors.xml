@@ -2,12 +2,12 @@
 <resources>
     <!-- Color scheme for main App theme -->
     <color name="colorPrimary">#212121</color>
-    <color name="colorPrimaryDark">#212121</color>
+    <color name="colorPrimaryDark">#121212</color>
     <color name="colorAccent">#2979FF</color>
 
     <!-- Color scheme for editor activity theme -->
     <color name="colorPrimaryEditor">#212121</color>
-    <color name="colorPrimaryDarkEditor">#212121</color>
+    <color name="colorPrimaryDarkEditor">#121212</color>
     <color name="colorAccentEditor">@color/colorAccent</color>
 
     <color name="primaryTextColor">#212121</color>
