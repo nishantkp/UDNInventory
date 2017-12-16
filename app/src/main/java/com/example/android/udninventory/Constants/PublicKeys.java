@@ -11,5 +11,7 @@ public class PublicKeys {
         // Empty constructor so no one can initialize it
     }
 
-    public static final String LOGIN_TABLE_NAME_INTENT_KEY = "table_name";
+    public static final String LOGIN_FAILED_KEY = "login_failed";
+    public static final String USER_PASSWORD_KEY = "user_password";
+    public static final String USER_TABLE_NAME_KEY = "user_table_name";
 }

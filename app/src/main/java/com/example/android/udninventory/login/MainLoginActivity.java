@@ -1,9 +1,12 @@
 package com.example.android.udninventory.login;
 
+import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
+import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.Snackbar;
@@ -168,70 +171,104 @@ public class MainLoginActivity extends AppCompatActivity
     }
 
     @Override
-    public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
-        // If there is no row present in cursor with given user ID/ user email
-        // Display toast message for incorrect username or password
-        if (data.getCount() <= 0) {
-            Snackbar.make(mCoordinatorLayout, getString(R.string.login_user_name_password_incorrect), Snackbar.LENGTH_SHORT).show();
-            // Set the LOGIN_FAILED_FLAG to true
-            LOGIN_FAILED_FLAG = true;
-            data.close();
-            return;
-        }
-        // Get the data from first row of the Cursor object
-        if (data.moveToNext()) {
-            if (data.isFirst()) {
-                data.moveToFirst();
-                int passwordIndex = data.getColumnIndex(ItemEntry.CREDENTIALS_TABLE_COLUMN_PASSWORD);
-                int tableNameIndex = data.getColumnIndex(ItemEntry.CREDENTIALS_TABLE_USER_INVENTORY_TABLE);
-                String password = data.getString(passwordIndex);
-                // Get the table name, which we need to send to main activity to create new table with that name
-                // to create inventory database for user
-                String tableName = data.getString(tableNameIndex);
-                String userEnteredPassword = mUserPassword.getText().toString().trim();
-                // If the password in the database matches the password entered by user, show message
-                // for correct password in snack bar else show message incorrect password
-                if (password.equals(userEnteredPassword)) {
-                    // Remove the email id and password from their respective fields
-                    mUserEmail.setText(null);
-                    mUserPassword.setText(null);
-                    // Set the LOGIN_FAILED_FLAG to false
-                    LOGIN_FAILED_FLAG = false;
-                    // Show progress dialog for better user experience
-                    final ProgressDialog progressDialog = new ProgressDialog(
-                            MainLoginActivity.this,
-                            R.style.LoginTheme_Dark_Dialog);
-                    progressDialog.setIndeterminate(true);
-                    progressDialog.setMessage(getString(R.string.login_authenticating));
-                    progressDialog.show();
-                    // Prevent Progress dialog from dismissing when user click on rest of the screen
-                    progressDialog.setCancelable(false);
-                    // Show dialog for 2.5s and dismiss it
-                    new android.os.Handler().postDelayed(
-                            new Runnable() {
-                                public void run() {
-                                    progressDialog.dismiss();
-                                }
-                            }, 2500);
-                    // Set the table name in ItemDbHelper for user who just successfully login
-                    // into account which will be user to create a database table or performing CRUD
-                    // operations
-                    ItemDbHelper.setNewTableName(tableName);
-                    Intent loginToUserSpecificDatabase = new Intent(MainLoginActivity.this, InventoryListActivity.class);
-                    loginToUserSpecificDatabase.putExtra(PublicKeys.LOGIN_TABLE_NAME_INTENT_KEY, tableName);
-                    startActivity(loginToUserSpecificDatabase);
-                } else {
-                    // Set the LOGIN_FAILED_FLAG to true
-                    LOGIN_FAILED_FLAG = true;
-                    Snackbar.make(mCoordinatorLayout, getString(R.string.login_user_name_password_incorrect), Snackbar.LENGTH_SHORT).show();
-                }
-            }
-        }
-        // Close the cursor after its usage
-        data.close();
+    public void onLoadFinished(Loader<Cursor> loader, final Cursor data) {
+        checkCredentialsAgainstDatabaseAndLogin(data);
     }
 
     @Override
     public void onLoaderReset(Loader<Cursor> loader) {
+    }
+
+    /**
+     * This method is called to check credentials such as user email and password against the values
+     * received by performing query on database
+     * And finally upon successful credential verification, log user in to their table by starting
+     * {@link InventoryListActivity}
+     *
+     * @param data cursor object received from LoaderCallbacks
+     */
+    @SuppressLint("StaticFieldLeak")
+    private void checkCredentialsAgainstDatabaseAndLogin(final Cursor data) {
+        // Perform cursor operations on background thread
+        new AsyncTask<Void, Void, ContentValues>() {
+            @Override
+            protected ContentValues doInBackground(Void... voids) {
+                ContentValues contentValues = new ContentValues();
+                // If count is <= 0, than means there isn't any row in the database which contains
+                // the email address provided by user
+                if (data.getCount() <= 0) {
+                    contentValues.put(PublicKeys.LOGIN_FAILED_KEY, true);
+                    // close the cursor after its usage
+                    data.close();
+                    return contentValues;
+                }
+                // If there is a next row present then move to that row, because that row contains the
+                // email, password and table name for particular user
+                if (data.moveToNext()) {
+                    if (data.isFirst()) {
+                        data.moveToFirst();
+                        contentValues.put(PublicKeys.LOGIN_FAILED_KEY, false);
+                        int passwordIndex = data.getColumnIndex(ItemEntry.CREDENTIALS_TABLE_COLUMN_PASSWORD);
+                        int tableNameIndex = data.getColumnIndex(ItemEntry.CREDENTIALS_TABLE_USER_INVENTORY_TABLE);
+                        String password = data.getString(passwordIndex);
+                        contentValues.put(PublicKeys.USER_PASSWORD_KEY, password);
+                        // Get the table name, which we need to send to main activity to create new table with that name
+                        // to create inventory database for user
+                        String tableName = data.getString(tableNameIndex);
+                        contentValues.put(PublicKeys.USER_TABLE_NAME_KEY, tableName);
+                    }
+                }
+                // close the cursor after its use
+                data.close();
+                return contentValues;
+            }
+
+            @Override
+            protected void onPostExecute(ContentValues contentValues) {
+                if (contentValues.containsKey(PublicKeys.LOGIN_FAILED_KEY)) {
+                    if (contentValues.getAsBoolean(PublicKeys.LOGIN_FAILED_KEY)) {
+                        Snackbar.make(mCoordinatorLayout, getString(R.string.login_user_name_password_incorrect), Snackbar.LENGTH_SHORT).show();
+                        // Set the LOGIN_FAILED_FLAG to true
+                        LOGIN_FAILED_FLAG = true;
+                    } else {
+                        String userEnteredPassword = mUserPassword.getText().toString().trim();
+                        if (contentValues.getAsString(PublicKeys.USER_PASSWORD_KEY).equals(userEnteredPassword)) {
+                            // Remove the email id and password from their respective fields
+                            mUserEmail.setText(null);
+                            mUserPassword.setText(null);
+                            // Set the LOGIN_FAILED_FLAG to false
+                            LOGIN_FAILED_FLAG = false;
+                            // Show progress dialog for better user experience
+                            final ProgressDialog progressDialog = new ProgressDialog(
+                                    MainLoginActivity.this,
+                                    R.style.LoginTheme_Dark_Dialog);
+                            progressDialog.setIndeterminate(true);
+                            progressDialog.setMessage(getString(R.string.login_authenticating));
+                            progressDialog.show();
+                            // Prevent Progress dialog from dismissing when user click on rest of the screen
+                            progressDialog.setCancelable(false);
+                            // Show dialog for 2.5s and dismiss it
+                            new android.os.Handler().postDelayed(
+                                    new Runnable() {
+                                        public void run() {
+                                            progressDialog.dismiss();
+                                        }
+                                    }, 2500);
+                            // Set the table name in ItemDbHelper for user who just successfully login
+                            // into account which will be user to create a database table or performing CRUD
+                            // operations
+                            ItemDbHelper.setNewTableName(contentValues.getAsString(PublicKeys.USER_TABLE_NAME_KEY));
+                            Intent loginToUserSpecificDatabase = new Intent(MainLoginActivity.this, InventoryListActivity.class);
+                            startActivity(loginToUserSpecificDatabase);
+                        } else {
+                            // Set the LOGIN_FAILED_FLAG to true
+                            LOGIN_FAILED_FLAG = true;
+                            Snackbar.make(mCoordinatorLayout, getString(R.string.login_user_name_password_incorrect), Snackbar.LENGTH_SHORT).show();
+                        }
+                    }
+
+                }
+            }
+        }.execute();
     }
 }
