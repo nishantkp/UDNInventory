@@ -217,7 +217,6 @@ public class MainLoginActivity extends AppCompatActivity
                     Intent loginToUserSpecificDatabase = new Intent(MainLoginActivity.this, InventoryListActivity.class);
                     loginToUserSpecificDatabase.putExtra(PublicKeys.LOGIN_TABLE_NAME_INTENT_KEY, tableName);
                     startActivity(loginToUserSpecificDatabase);
-                    Snackbar.make(mCoordinatorLayout, "Correct password", Snackbar.LENGTH_SHORT).show();
                 } else {
                     // Set the LOGIN_FAILED_FLAG to true
                     LOGIN_FAILED_FLAG = true;
