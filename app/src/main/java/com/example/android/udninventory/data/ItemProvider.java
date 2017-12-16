@@ -36,7 +36,13 @@ public class ItemProvider extends ContentProvider {
      * URI matched code for a single item from the table
      */
     private static final int ITEM_ID = 101;
+    /**
+     * URI matched code for a whole credential table
+     */
     private static final int CREDENTIALS = 102;
+    /**
+     * Uri matched code for single item from credential table
+     */
     private static final int CREDENTIALS_ID = 103;
     /**
      * UriMatcher object to match the context URI to corresponding code
