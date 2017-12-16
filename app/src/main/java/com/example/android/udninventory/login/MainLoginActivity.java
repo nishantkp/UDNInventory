@@ -210,6 +210,9 @@ public class MainLoginActivity extends AppCompatActivity
                                     progressDialog.dismiss();
                                 }
                             }, 2500);
+                    // Set the table name in ItemDbHelper for user who just successfully login
+                    // into account which will be user to create a database table or performing CRUD
+                    // operations
                     ItemDbHelper.setNewTableName(tableName);
                     Intent loginToUserSpecificDatabase = new Intent(MainLoginActivity.this, InventoryListActivity.class);
                     loginToUserSpecificDatabase.putExtra(PublicKeys.LOGIN_TABLE_NAME_INTENT_KEY, tableName);
