@@ -220,7 +220,7 @@ public class MainLoginActivity extends AppCompatActivity
                 } else {
                     // Set the LOGIN_FAILED_FLAG to true
                     LOGIN_FAILED_FLAG = true;
-                    Snackbar.make(mCoordinatorLayout, "Incorrect password", Snackbar.LENGTH_SHORT).show();
+                    Snackbar.make(mCoordinatorLayout, "Username or password is incorrect", Snackbar.LENGTH_SHORT).show();
                 }
             }
         }
