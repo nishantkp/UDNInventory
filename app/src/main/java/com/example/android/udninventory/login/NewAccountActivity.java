@@ -14,7 +14,6 @@ import android.os.Bundle;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
@@ -52,9 +51,6 @@ public class NewAccountActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_account);
-
-        // Print credentials database on LOGCAT
-        checkData();
 
         /* Find all the views with respective Ids */
         mUserEmailWrapper = findViewById(R.id.new_user_email_edit_text_wrapper);
@@ -159,31 +155,6 @@ public class NewAccountActivity extends AppCompatActivity
             mUserEmailWrapper.setErrorEnabled(false);
         }
         return validData;
-    }
-
-    // This function is called to check the inserted credentials
-    private void checkData() {
-        String[] projection = {
-                ItemEntry._ID,
-                ItemEntry.CREDENTIALS_TABLE_COLUMN_USER_NAME,
-                ItemEntry.CREDENTIALS_TABLE_COLUMN_EMAIL,
-                ItemEntry.CREDENTIALS_TABLE_COLUMN_PASSWORD};
-
-        Cursor cursor = getContentResolver().query(ItemEntry.CREDENTIALS_CONTENT_URI
-                , projection
-                , null
-                , null
-                , null);
-
-        assert cursor != null;
-        while (cursor.moveToNext()) {
-            int idCheck = cursor.getInt(cursor.getColumnIndex(ItemEntry._ID));
-            String nameCheck = cursor.getString(cursor.getColumnIndex(ItemEntry.CREDENTIALS_TABLE_COLUMN_USER_NAME));
-            String emailCheck = cursor.getString(cursor.getColumnIndex(ItemEntry.CREDENTIALS_TABLE_COLUMN_EMAIL));
-            String passwordCheck = cursor.getString(cursor.getColumnIndex(ItemEntry.CREDENTIALS_TABLE_COLUMN_PASSWORD));
-            Log.i(LOG_TAG, "\nid:" + idCheck + " Name:" + nameCheck + " Email:" + emailCheck + " Password:" + passwordCheck);
-        }
-        cursor.close();
     }
 
     @Override
