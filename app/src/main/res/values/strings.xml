@@ -115,4 +115,10 @@
 
     <!-- Email subject line when sending email to supplier [CHAR LIMIT=20] -->
     <string name="email_subject_line">New order for</string>
+
+    <!-- Toast error message when deleting item from database [CHAR LIMIT=25] -->
+    <string name="error_delete_item_toast">Error deleting item</string>
+
+    <!-- Toast message when successfully deleted item from database [CHAR LIMIT=20] -->
+    <string name="item_deleted_toast">Item deleted</string>
 </resources>

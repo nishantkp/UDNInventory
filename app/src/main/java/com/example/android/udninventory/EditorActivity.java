@@ -654,9 +654,9 @@ public class EditorActivity extends AppCompatActivity
             // item to delete
             int rowsDeleted = getContentResolver().delete(mCurrentItemUri, null, null);
             if (rowsDeleted == 0) {
-                Toast.makeText(this, "Error deleting item", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, getString(R.string.error_delete_item_toast), Toast.LENGTH_SHORT).show();
             } else {
-                Toast.makeText(this, "Item deleted", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, getString(R.string.item_deleted_toast), Toast.LENGTH_SHORT).show();
             }
             NavUtils.navigateUpFromSameTask(EditorActivity.this);
         }
