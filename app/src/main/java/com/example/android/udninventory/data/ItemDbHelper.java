@@ -23,19 +23,6 @@ public class ItemDbHelper extends SQLiteOpenHelper {
     // Name of database file
     public static final String DATABASE_NAME = "inventory.db";
 
-    // String containing SQL statement to create table
-    private static String SQL_CREATE_ENTRIES =
-            "CREATE TABLE " + getNewTableName() + "("
-                    + ItemEntry._ID + " INTEGER PRIMARY KEY AUTOINCREMENT" + ","
-                    + ItemEntry.COLUMN_ITEM_NAME + " TEXT NOT NULL" + ","
-                    + ItemEntry.COLUMN_ITEM_PRICE + " REAL NOT NULL" + ","
-                    + ItemEntry.COLUMN_ITEM_CATEGORY + " TEXT" + ","
-                    + ItemEntry.COLUMN_ITEM_QUANTITY + " INTEGER NOT NULL DEFAULT 0" + ","
-                    + ItemEntry.COLUMN_SUPPLIER_NAME + " TEXT NOT NULL" + ","
-                    + ItemEntry.COLUMN_SUPPLIER_PHONE + " TEXT" + ","
-                    + ItemEntry.COLUMN_SUPPLIER_EMAIL + " TEXT" + ","
-                    + ItemEntry.COLUMN_ITEM_THUMBNAIL + " BLOB" + ")";
-
     // String containing SQL statement to create a table for login information
     public static final String SQL_CREATE_LOGIN_ENTRIES =
             "CREATE TABLE " + ItemEntry.CREDENTIALS_TABLE_NAME + "(" + ItemEntry._ID
@@ -44,10 +31,6 @@ public class ItemDbHelper extends SQLiteOpenHelper {
                     + ItemEntry.CREDENTIALS_TABLE_COLUMN_EMAIL + " TEXT NOT NULL" + ","
                     + ItemEntry.CREDENTIALS_TABLE_COLUMN_PASSWORD + " TEXT NOT NULL" + ","
                     + ItemEntry.CREDENTIALS_TABLE_USER_INVENTORY_TABLE + " TEXT NOT NULL" + ")";
-
-    // String containing SQL statement to delete table
-    public static final String SQL_DELETE_ENTRIES =
-            "DROP TABLE IF EXISTS " + ItemEntry.TABLE_NAME;
 
     // String containing SQL statement to delete login table
     public static final String SQL_DELETE_LOGIN_ENTRIES =
