@@ -29,6 +29,8 @@ Imagine that you are the Android developer at a merchandise startup, tasked with
 - Make an order of existing product with one click
 - Decrease the quantity of product from homescreen
 - TextInputLayout
+- Create personal profile
+- Login
 
 #### Perform a small background task with AsyncTask
 
