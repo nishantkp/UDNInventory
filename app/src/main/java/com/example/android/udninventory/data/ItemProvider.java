@@ -134,7 +134,6 @@ public class ItemProvider extends ContentProvider {
         // So we know what content URI the Cursor was created for
         // If the data at this URI changes, so we know we need to update the Cursor
         cursor.setNotificationUri(getContext().getContentResolver(), uri);
-
         return cursor;
     }
 
@@ -264,9 +263,10 @@ public class ItemProvider extends ContentProvider {
         // Insert a new item with given values
         long id = database.insert(ItemDbHelper.getNewTableName(), null, contentValues);
         if (id == -1) {
+            database.close();
             return null;
         }
-
+        database.close();
         // Notify all the listener that data has changed for the item content uri
         // content://com.example.android.inventory/items
         getContext().getContentResolver().notifyChange(uri, null);
@@ -288,8 +288,10 @@ public class ItemProvider extends ContentProvider {
         // Insert new credentials into table
         long id = database.insert(ItemEntry.CREDENTIALS_TABLE_NAME, null, contentValues);
         if (id == -1) {
+            database.close();
             return null;
         }
+        database.close();
         // Return the uri with ID (ID of newly inserted row) appended at the end of URI
         return ContentUris.withAppendedId(uri, id);
     }
@@ -341,7 +343,7 @@ public class ItemProvider extends ContentProvider {
         SQLiteDatabase database = mItemDbHelper.getWritableDatabase();
         // Update the database and get the number of row affected
         int rowsUpdated = database.update(ItemDbHelper.getNewTableName(), contentValues, selection, selectionArgs);
-
+        database.close();
         // If 1 or more rows were updated, then notify all listeners that the data at the
         // given URI has changed
         if (rowsUpdated != 0) {
