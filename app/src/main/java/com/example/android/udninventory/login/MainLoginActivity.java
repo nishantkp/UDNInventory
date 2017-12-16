@@ -177,8 +177,9 @@ public class MainLoginActivity extends AppCompatActivity
 
     @Override
     public void onLoadFinished(Loader<Cursor> loader, final Cursor data) {
-       // checkCredentialsAgainstDatabaseAndLogin(data);
+        // checkCredentialsAgainstDatabaseAndLogin(data);
         mCrediantialData = data;
+        // Start AsyncTask to validate used credentials
         new CheckCredentialsAgainstDatabaseAndLogin(this).execute();
     }
 
@@ -279,6 +280,12 @@ public class MainLoginActivity extends AppCompatActivity
         }.execute();
     }
 
+    /**
+     * Private class to check credentials such as user email ans password against the values
+     * received by performing query on database
+     * And finally upon successful credential verification, log user in to their table by starting
+     * {@link InventoryListActivity}
+     */
     private static class CheckCredentialsAgainstDatabaseAndLogin extends AsyncTask<Void, Void, ContentValues> {
 
         /* Stores the week reference to activity */
