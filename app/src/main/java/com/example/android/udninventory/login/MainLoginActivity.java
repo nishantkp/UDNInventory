@@ -189,12 +189,12 @@ public class MainLoginActivity extends AppCompatActivity
                 // to create inventory database for user
                 String tableName = data.getString(tableNameIndex);
                 String userEnteredPassword = mUserPassword.getText().toString().trim();
-                // Remove the email id and password from their respective fields
-                mUserEmail.setText(null);
-                mUserPassword.setText(null);
                 // If the password in the database matches the password entered by user, show message
                 // for correct password in snack bar else show message incorrect password
                 if (password.equals(userEnteredPassword)) {
+                    // Remove the email id and password from their respective fields
+                    mUserEmail.setText(null);
+                    mUserPassword.setText(null);
                     // Set the LOGIN_FAILED_FLAG to false
                     LOGIN_FAILED_FLAG = false;
                     // Show progress dialog for better user experience
