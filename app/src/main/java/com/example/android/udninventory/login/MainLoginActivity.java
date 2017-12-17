@@ -49,7 +49,7 @@ public class MainLoginActivity extends AppCompatActivity
     private boolean LOGIN_FAILED_FLAG = false;
     /* Cursor to store credential information received from querying credentials
     table with user entered email */
-    private Cursor mCrediantialData;
+    private Cursor mCredentialData;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -178,7 +178,7 @@ public class MainLoginActivity extends AppCompatActivity
     @Override
     public void onLoadFinished(Loader<Cursor> loader, final Cursor data) {
         // checkCredentialsAgainstDatabaseAndLogin(data);
-        mCrediantialData = data;
+        mCredentialData = data;
         // Start AsyncTask to validate used credentials
         new CheckCredentialsAgainstDatabaseAndLogin(this).execute();
     }
@@ -305,30 +305,30 @@ public class MainLoginActivity extends AppCompatActivity
             ContentValues contentValues = new ContentValues();
             // If count is <= 0, than means there isn't any row in the database which contains
             // the email address provided by user
-            if (activity.mCrediantialData.getCount() <= 0) {
+            if (activity.mCredentialData.getCount() <= 0) {
                 contentValues.put(PublicKeys.LOGIN_FAILED_KEY, true);
                 // close the cursor after its usage
-                activity.mCrediantialData.close();
+                activity.mCredentialData.close();
                 return contentValues;
             }
             // If there is a next row present then move to that row, because that row contains the
             // email, password and table name for particular user
-            if (activity.mCrediantialData.moveToNext()) {
-                if (activity.mCrediantialData.isFirst()) {
-                    activity.mCrediantialData.moveToFirst();
+            if (activity.mCredentialData.moveToNext()) {
+                if (activity.mCredentialData.isFirst()) {
+                    activity.mCredentialData.moveToFirst();
                     contentValues.put(PublicKeys.LOGIN_FAILED_KEY, false);
-                    int passwordIndex = activity.mCrediantialData.getColumnIndex(ItemEntry.CREDENTIALS_TABLE_COLUMN_PASSWORD);
-                    int tableNameIndex = activity.mCrediantialData.getColumnIndex(ItemEntry.CREDENTIALS_TABLE_USER_INVENTORY_TABLE);
-                    String password = activity.mCrediantialData.getString(passwordIndex);
+                    int passwordIndex = activity.mCredentialData.getColumnIndex(ItemEntry.CREDENTIALS_TABLE_COLUMN_PASSWORD);
+                    int tableNameIndex = activity.mCredentialData.getColumnIndex(ItemEntry.CREDENTIALS_TABLE_USER_INVENTORY_TABLE);
+                    String password = activity.mCredentialData.getString(passwordIndex);
                     contentValues.put(PublicKeys.USER_PASSWORD_KEY, password);
                     // Get the table name, which we need to send to main activity to create new table with that name
                     // to create inventory database for user
-                    String tableName = activity.mCrediantialData.getString(tableNameIndex);
+                    String tableName = activity.mCredentialData.getString(tableNameIndex);
                     contentValues.put(PublicKeys.USER_TABLE_NAME_KEY, tableName);
                 }
             }
             // close the cursor after its use
-            activity.mCrediantialData.close();
+            activity.mCredentialData.close();
             return contentValues;
         }
 
