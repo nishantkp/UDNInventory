@@ -377,9 +377,7 @@ public class MainLoginActivity extends AppCompatActivity
                         Snackbar.make(activity.mCoordinatorLayout, activity.getString(R.string.login_user_name_password_incorrect), Snackbar.LENGTH_SHORT).show();
                     }
                 }
-
             }
-
         }
     }
 }
