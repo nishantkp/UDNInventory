@@ -28,24 +28,19 @@ public class NewAccountActivity extends AppCompatActivity
 
     /* TAG for log messages*/
     private static final String LOG_TAG = NewAccountActivity.class.getName();
-
+    /* Loader id for creating a new account */
+    private static final int CREATE_NEW_ACCOUNT_LOADER_ID = 1;
     /* TextInput wrappers */
     private TextInputLayout mUserEmailWrapper;
     private TextInputLayout mUserNameWrapper;
     private TextInputLayout mUserPasswordWrapper;
-
     /* EditText fields for user information */
     private EditText mUserEmail;
     private EditText mUserName;
     private EditText mUserPassword;
-
     private Button mCreateAccountButton;
-
     /* Flag to check email address provided by user exists in the database or not */
     private boolean mEmailExistsFlag = false;
-
-    /* Loader id for creating a new account */
-    private static final int CREATE_NEW_ACCOUNT_LOADER_ID = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -221,6 +216,7 @@ public class NewAccountActivity extends AppCompatActivity
         String password = mUserPassword.getText().toString().trim();
         String tableName = email.replace(".", "_");
         tableName = tableName.replace("@", "_");
+        tableName = tableName.replace("-", "_");
 
         // Content value object to insert data entered by user into database
         final ContentValues contentValues = new ContentValues();
