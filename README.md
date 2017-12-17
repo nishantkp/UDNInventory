@@ -88,6 +88,9 @@ To animate floating lable as per material design guide lines, use `setHint` meth
 ```java
 emailWrapper.setHint("Email");
 ```
+## UX Design
+
+<img src="https://user-images.githubusercontent.com/32653955/34083100-d88841a8-e338-11e7-89d0-43ad553772f9.png" width="275" height="475"> <img src="https://user-images.githubusercontent.com/32653955/34083102-d89fbf40-e338-11e7-8abc-a0c090006a32.png" width="275" height="475"> <img src="https://user-images.githubusercontent.com/32653955/34083101-d8947ed2-e338-11e7-8653-3ba05ad3174a.png" width="275" height="475"> <img src="https://user-images.githubusercontent.com/32653955/34083103-d8abf63e-e338-11e7-9038-985e8808716d.png" width="275" height="475"> <img src="https://user-images.githubusercontent.com/32653955/34083104-d8b981a0-e338-11e7-9478-a86aec5d5021.png" width="275" height="475"> <img src="https://user-images.githubusercontent.com/32653955/34083105-d8c476fa-e338-11e7-993d-13b51a3bd7b4.png" width="275" height="475"> <img src="https://user-images.githubusercontent.com/32653955/34083106-d8d8568e-e338-11e7-84fa-429ed492f80b.png" width="275" height="475">
 
 ## PROJECT LICENSE
 
