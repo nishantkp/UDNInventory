@@ -205,7 +205,7 @@ public class NewAccountActivity extends AppCompatActivity
                 NewAccountActivity.this,
                 R.style.LoginTheme_Dark_Dialog);
         progressDialog.setIndeterminate(true);
-        progressDialog.setMessage("Creating Account...");
+        progressDialog.setMessage(getString(R.string.creating_account));
         progressDialog.show();
         // Prevent Progress dialog from dismissing when user click on rest of the screen
         progressDialog.setCancelable(false);

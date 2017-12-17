@@ -99,6 +99,9 @@
     <!-- Progress dialog text [CHAR LIMIT=20] -->
     <string name="login_authenticating">Authenticating…</string>
 
+    <!-- Progress dialog text [CHAR LIMIT=20] -->
+    <string name="creating_account">Creating Account…</string>
+
     <!-- Error message for user name or password incorrect [CHAR LIMIT=50] -->
     <string name="login_user_name_password_incorrect">Username or password is incorrect</string>
 
