@@ -31,8 +31,8 @@
     <color name="loginColorAccent">#2979FF</color>
     <color name="iron">#fefefe</color>
 
-    <!-- login screen background color gradient -->
-    <color name="gradientStartColor">#ff1744</color>
-    <color name="gradientCenterColor">#ff3744</color>
-    <color name="gradientEndColor">#ff5744</color>
+    <!-- Item category background color gradient -->
+    <color name="categoryGradientStartColor">#ffa000</color>
+    <color name="categoryGradientCenterColor">#f06292</color>
+    <color name="categoryGradientEndColor">#ff4081</color>
 </resources>
