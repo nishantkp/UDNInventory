@@ -55,7 +55,7 @@
             android:layout_marginLeft="@dimen/overview_category_name_default_margin"
             android:layout_marginRight="@dimen/overview_category_name_default_margin"
             android:layout_marginTop="@dimen/overview_category_name_default_margin"
-            android:background="@drawable/catagory_text_background"
+            android:background="@drawable/category_text_background"
             android:padding="@dimen/overview_category_name_padding"
             android:text="Category : Appreance"
             android:textColor="@color/primaryWhiteColor"
