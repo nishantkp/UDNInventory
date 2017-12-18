@@ -1,7 +1,7 @@
 # UDNInventory - An Inventory Management App
 
 Project as a part of nano-degree at [Udacity](https://www.udacity.com).
-<br>This is the capstone project of the Nanodegree program.</br>
+This is the capstone project of the Nanodegree program.
 
 ### Project Rubic
 
