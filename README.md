@@ -88,6 +88,12 @@ To animate floating lable as per material design guide lines, use `setHint` meth
 ```java
 emailWrapper.setHint("Email");
 ```
+
+#### Login Screen
+
+Used generic-login as per material design guide-lines.
+For getting reference [click here](https://github.com/nishantkp/generic-login).
+
 ## UX Design
 
 <img src="https://user-images.githubusercontent.com/32653955/34083100-d88841a8-e338-11e7-89d0-43ad553772f9.png" width="275" height="475"> <img src="https://user-images.githubusercontent.com/32653955/34083102-d89fbf40-e338-11e7-8abc-a0c090006a32.png" width="275" height="475"> <img src="https://user-images.githubusercontent.com/32653955/34083101-d8947ed2-e338-11e7-8653-3ba05ad3174a.png" width="275" height="475"> <img src="https://user-images.githubusercontent.com/32653955/34085934-54c7c8b6-e365-11e7-9744-12078c22e33b.png" width="275" height="475"> <img src="https://user-images.githubusercontent.com/32653955/34085979-b65e15e4-e365-11e7-9d56-2f61a4f53a71.png" width="275" height="475"> <img src="https://user-images.githubusercontent.com/32653955/34085978-b3184d78-e365-11e7-801b-db3c99ff03a7.png" width="275" height="475"> <img src="https://user-images.githubusercontent.com/32653955/34086006-1d69ccd8-e366-11e7-99aa-85a4b5ac40ad.png" width="275" height="475">
