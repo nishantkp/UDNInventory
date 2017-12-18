@@ -30,6 +30,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.android.udninventory.Constants.PublicKeys;
 import com.example.android.udninventory.data.ItemBitmapUtils;
 import com.example.android.udninventory.data.ItemContract.ItemEntry;
 import com.example.android.udninventory.data.Validation;
@@ -740,7 +741,7 @@ public class EditorActivity extends AppCompatActivity
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
             Bundle extras = data.getExtras();
-            Bitmap bitmapImage = (Bitmap) extras.get("data");
+            Bitmap bitmapImage = (Bitmap) extras.get(PublicKeys.GET_BITMAP_KEY);
             // Display the photo in ImageView
             mItemThumbnail.setImageBitmap(bitmapImage);
         }
@@ -750,7 +751,7 @@ public class EditorActivity extends AppCompatActivity
     private void placeNewOrder(String quantity, String email, String itemName) {
         Intent emailIntent = new Intent(Intent.ACTION_SENDTO);
         // Supplier email
-        emailIntent.setData(Uri.parse("mailto:" + email));
+        emailIntent.setData(Uri.parse(PublicKeys.SEND_EMAIL_KEY + email));
 
         // Email subject line
         emailIntent.putExtra(Intent.EXTRA_SUBJECT, getString(R.string.email_subject_line) + " " + itemName);

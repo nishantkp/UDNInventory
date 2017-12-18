@@ -14,4 +14,6 @@ public class PublicKeys {
     public static final String LOGIN_FAILED_KEY = "login_failed";
     public static final String USER_PASSWORD_KEY = "user_password";
     public static final String USER_TABLE_NAME_KEY = "user_table_name";
+    public static final String GET_BITMAP_KEY = "data";
+    public static final String SEND_EMAIL_KEY = "mailto:";
 }
