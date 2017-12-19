@@ -70,6 +70,9 @@
     <!-- Action button for snackBar in home screen for ordering an item [CHAR LIMIT=20] -->
     <string name="catalog_make_an_order_snackBar_action_button">order</string>
 
+    <!-- Button text for capturing a photo [CHAR_LIMIT=10] -->
+    <string name="editor_edit_photo_button">Edit</string>
+
     <!-- Hints for Editor Activity TextInputLayouts [CHAR LIMIT=20] -->
     <string name="editor_text_input_layout_name_hint">Name</string>
     <string name="editor_text_input_layout_quantity_hint">Quantity</string>
@@ -130,4 +133,49 @@
 
     <!-- Progress dialog message whe user is logging out [CHAR LIMIT=20]-->
     <string name="logging_out">Logging out…</string>
+
+    <!-- Email EditText hint [CHAR LIMIT=10] -->
+    <string name="email_hint">Email</string>
+
+    <!-- Password EditText hint [CHAR LIMIT=10] -->
+    <string name="password_hint">Password</string>
+
+    <!-- Login button text [CHAR LIMIT=10] -->
+    <string name="login_button_text">Login</string>
+
+    <!-- Name EditText hint [CHAR LIMIT=10]-->
+    <string name="name_hint">Name</string>
+
+    <!-- Text to create a new account from main login page [CHAR LIMIT=35]-->
+    <string name="create_new_account_text">Not account yet? Create one</string>
+
+    <!-- Text to login back to existing account [CHAR LIMIT=35]-->
+    <string name="login_to_existing_account_text">Already a member? Login</string>
+
+    <!-- Button text for creating a new account [CHAR LIMIT=20]-->
+    <string name="create_account_button_text">Create Account</string>
+
+    <!-- Quantity heading in overview activity [CHAR LIMIT=10]-->
+    <string name="overview_quantity_text">Quantity</string>
+
+    <!-- Price heading in overview activity [CHAR LIMIT=10]-->
+    <string name="overview_price_text">Price</string>
+
+    <!-- Supplier detail heading in overview activity [CHAR LIMIT=20]-->
+    <string name="overview_supplier_detail_text">Supplier details</string>
+
+    <!-- Supplier name heading in overview activity [CHAR LIMIT=10]-->
+    <string name="overview_supplier_name">Name</string>
+
+    <!-- Supplier email heading in overview activity [CHAR LIMIT=10]-->
+    <string name="overview_supplier_email">Email</string>
+
+    <!-- Supplier phone heading in overview activity [CHAR LIMIT=10]-->
+    <string name="overview_supplier_phone">Phone</string>
+
+    <!-- List view hint for how to add new Item [CHAR LIMIT=60]-->
+    <string name="list_add_new_item_hint">Click  +  on top right corner to add a new item</string>
+
+    <!-- List view text for no content [CHAR LIMIT=15]-->
+    <string name="list_no_content">no content</string>
 </resources>

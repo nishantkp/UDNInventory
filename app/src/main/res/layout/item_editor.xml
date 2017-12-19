@@ -41,7 +41,7 @@
                     android:layout_centerHorizontal="true"
                     android:background="@color/categoryTitle"
                     android:gravity="center"
-                    android:text="Edit"
+                    android:text="@string/editor_edit_photo_button"
                     android:textAllCaps="false"
                     android:textColor="@color/primaryWhiteColor"
                     android:textSize="@dimen/secondary_text_size" />

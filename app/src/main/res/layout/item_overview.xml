@@ -83,7 +83,7 @@
                     android:fontFamily="sans-serif"
                     android:gravity="center"
                     android:paddingBottom="@dimen/overview_quantity_price_padding_bottom"
-                    android:text="Quantity"
+                    android:text="@string/overview_quantity_text"
                     android:textColor="@color/primaryTextColor"
                     android:textSize="@dimen/secondary_text_size" />
 
@@ -110,7 +110,7 @@
                     android:fontFamily="sans-serif"
                     android:gravity="center"
                     android:paddingBottom="@dimen/overview_quantity_price_padding_bottom"
-                    android:text="Price"
+                    android:text="@string/overview_price_text"
                     android:textColor="@color/primaryTextColor"
                     android:textSize="@dimen/secondary_text_size" />
 
@@ -135,7 +135,7 @@
             android:fontFamily="sans-serif-medium"
             android:paddingLeft="@dimen/overview_default_margin_padding"
             android:paddingRight="@dimen/overview_default_margin_padding"
-            android:text="Supplier details"
+            android:text="@string/overview_supplier_detail_text"
             android:textColor="@color/overviewTextTitle"
             android:textSize="@dimen/secondary_text_size" />
 
@@ -157,7 +157,7 @@
                 android:layout_width="@dimen/overview_attributes_width"
                 android:layout_height="wrap_content"
                 android:fontFamily="sans-serif"
-                android:text="Name"
+                android:text="@string/overview_supplier_name"
                 android:textColor="@color/primaryTextColor"
                 android:textSize="@dimen/secondary_text_size" />
 
@@ -184,7 +184,7 @@
                 android:layout_width="@dimen/overview_attributes_width"
                 android:layout_height="wrap_content"
                 android:fontFamily="sans-serif"
-                android:text="Phone"
+                android:text="@string/overview_supplier_phone"
                 android:textColor="@color/primaryTextColor"
                 android:textSize="@dimen/secondary_text_size" />
 
@@ -211,7 +211,7 @@
                 android:layout_width="@dimen/overview_attributes_width"
                 android:layout_height="wrap_content"
                 android:fontFamily="sans-serif"
-                android:text="Email"
+                android:text="@string/overview_supplier_email"
                 android:textColor="@color/primaryTextColor"
                 android:textSize="@dimen/secondary_text_size" />
 

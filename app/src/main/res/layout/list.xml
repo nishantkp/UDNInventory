@@ -27,14 +27,14 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:fontFamily="sans-serif-condensed"
-                android:text="no content"
+                android:text="@string/list_no_content"
                 android:textAllCaps="true"
                 android:textAppearance="?android:textAppearanceMedium" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Click  +  on top right corner to add a new item" />
+                android:text="@string/list_add_new_item_hint" />
         </LinearLayout>
     </RelativeLayout>
 </android.support.design.widget.CoordinatorLayout>
