@@ -83,6 +83,8 @@ public class MainLoginActivity extends AppCompatActivity
         createNewAccount.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                mUserEmail.setText(null);
+                mUserPassword.setText(null);
                 Intent createNewAccountIntent = new Intent(MainLoginActivity.this, NewAccountActivity.class);
                 startActivity(createNewAccountIntent);
             }
