@@ -136,8 +136,10 @@
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_gravity">bottom</item>
-        <item name="android:layout_marginLeft">@dimen/editor_quantity_modification_button_margin</item>
-        <item name="android:layout_marginRight">@dimen/editor_quantity_modification_button_margin</item>
+        <item name="android:layout_marginLeft">@dimen/editor_quantity_modification_button_margin
+        </item>
+        <item name="android:layout_marginRight">@dimen/editor_quantity_modification_button_margin
+        </item>
         <item name="android:minHeight">0dp</item>
         <item name="android:minWidth">0dp</item>
         <item name="android:padding">@dimen/editor_quantity_modification_button_padding</item>
@@ -186,5 +188,32 @@
         <item name="android:inputType">number</item>
         <item name="android:padding">@dimen/editor_new_order_edit_text_padding</item>
         <item name="android:textAppearance">?android:textAppearanceMedium</item>
+    </style>
+
+    <!-- Login activity edit text layout wrapper style -->
+    <style name="login_edit_text_layout_wrapper_style">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginBottom">@dimen/login_edit_text_layout_margin_bottom</item>
+        <item name="android:layout_marginTop">@dimen/login_edit_text_layout_margin_top</item>
+    </style>
+
+    <!-- Login activity login/create new account button style -->
+    <style name="login_button_style">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginBottom">@dimen/login_default_margin</item>
+        <item name="android:layout_marginTop">@dimen/login_default_margin</item>
+        <item name="android:padding">@dimen/login_button_padding</item>
+    </style>
+
+    <!-- Login activity textView which works as button -->
+    <style name="login_text_button_style">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginBottom">@dimen/login_default_margin</item>
+        <item name="android:gravity">center</item>
+        <item name="android:padding">@dimen/login_button_padding</item>
+        <item name="android:textSize">@dimen/primary_text_size</item>
     </style>
 </resources>
