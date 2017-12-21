@@ -37,17 +37,8 @@
 
     <TextView
         android:id="@+id/list_item_item_category"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_margin="@dimen/list_item_category_margin"
-        android:background="@drawable/category_text_background"
-        android:padding="@dimen/list_item_category_padding"
-        android:fontFamily="sans-serif"
-        android:text="Stationary"
-        android:textSize="@dimen/secondary_text_size"
-        android:textColor="@color/primaryWhiteColor"
-        android:textStyle="bold" />
+        style="@style/catalog_activity_category_style"
+        tools:text="Stationary" />
 
     <TextView
         android:id="@+id/list_item_item_quantity"
@@ -55,10 +46,6 @@
         tools:text="155" />
 
     <ImageView
-        android:layout_width="@dimen/list_item_icon_height"
-        android:layout_height="@dimen/list_item_icon_height"
-        android:layout_gravity="center"
-        android:layout_marginLeft="@dimen/list_item_icon_margin_left"
         android:src="@drawable/ic_info_outline_black_24dp"
-        android:tint="@color/colorAccent" />
+        style="@style/catalog_activity_info_icon_style" />
 </LinearLayout>

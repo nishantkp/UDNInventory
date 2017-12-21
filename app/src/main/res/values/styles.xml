@@ -74,6 +74,29 @@
         <!-- <item name="android:layout_marginRight">12dp</item>-->
     </style>
 
+    <!-- Catalog activity item category style -->
+    <style name="catalog_activity_category_style">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:layout_margin">@dimen/list_item_category_margin</item>
+        <item name="android:background">@drawable/category_text_background</item>
+        <item name="android:fontFamily">sans-serif</item>
+        <item name="android:padding">@dimen/list_item_category_padding</item>
+        <item name="android:textColor">@color/primaryWhiteColor</item>
+        <item name="android:textSize">@dimen/secondary_text_size</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <!-- Catalog activity info icon style -->
+    <style name="catalog_activity_info_icon_style">
+        <item name="android:layout_width">@dimen/list_item_icon_height</item>
+        <item name="android:layout_height">@dimen/list_item_icon_height</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:layout_marginLeft">@dimen/list_item_icon_margin_left</item>
+        <item name="android:tint">@color/colorAccent</item>
+    </style>
+
     <!-- Editor activity section divider style-->
     <style name="editor_activity_section_divider">
         <item name="android:layout_width">match_parent</item>
