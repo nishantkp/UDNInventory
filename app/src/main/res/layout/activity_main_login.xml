@@ -14,14 +14,14 @@
         android:focusableInTouchMode="true"
         android:gravity="center"
         android:orientation="vertical"
-        android:padding="24dp">
+        android:padding="@dimen/login_default_padding">
 
         <android.support.design.widget.TextInputLayout
             android:id="@+id/login_email_edit_text_wrapper"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginBottom="@dimen/login_edit_text_layout_margin_bottom"
+            android:layout_marginTop="@dimen/login_edit_text_layout_margin_top"
             app:errorTextAppearance="@color/primaryWhiteColor">
 
             <EditText
@@ -36,8 +36,8 @@
             android:id="@+id/login_password_edit_text_wrapper"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginBottom="@dimen/login_edit_text_layout_margin_bottom"
+            android:layout_marginTop="@dimen/login_edit_text_layout_margin_top"
             app:errorTextAppearance="@color/primaryWhiteColor">
 
             <EditText
@@ -52,19 +52,19 @@
             android:id="@+id/login_button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="24dp"
-            android:layout_marginTop="24dp"
-            android:padding="12dp"
+            android:layout_marginBottom="@dimen/login_default_margin"
+            android:layout_marginTop="@dimen/login_default_margin"
+            android:padding="@dimen/login_button_padding"
             android:text="@string/login_button_text" />
 
         <TextView
             android:id="@+id/login_link_create_new_account"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="24dp"
+            android:layout_marginBottom="@dimen/login_default_margin"
             android:gravity="center"
-            android:padding="16dp"
+            android:padding="@dimen/login_button_padding"
             android:text="@string/create_new_account_text"
-            android:textSize="16sp" />
+            android:textSize="@dimen/primary_text_size" />
     </LinearLayout>
 </android.support.design.widget.CoordinatorLayout>

@@ -57,4 +57,11 @@
     <dimen name="list_item_item_name_padding">2dp</dimen>
     <dimen name="list_item_button_padding">20dp</dimen>
     <dimen name="list_item_button_margin">5dp</dimen>
+
+    <!-- Login activity dimensions -->
+    <dimen name="login_default_padding">24dp</dimen>
+    <dimen name="login_default_margin">24dp</dimen>
+    <dimen name="login_button_padding">16dp</dimen>
+    <dimen name="login_edit_text_layout_margin_top">8dp</dimen>
+    <dimen name="login_edit_text_layout_margin_bottom">8dp</dimen>
 </resources>
