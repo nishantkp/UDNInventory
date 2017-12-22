@@ -127,10 +127,6 @@ public class ItemCursorAdapter extends CursorAdapter {
         // uri to update a database at given id, when user clicks decrease button
         final Uri currentItemUri = ContentUris.withAppendedId(ItemEntry.CONTENT_URI, itemId);
 
-        // Find the button for decreasing the quantity in ListView with id : list_item_item_decrease_quantity_button
-        // As button doesn't work on ListView, we have to set on click listener on decrease quantity
-        // in Adapter view
-        // Button decreaseQuantityButton = view.findViewById(R.id.list_item_item_decrease_quantity_button);
         // Attach a listener to button
         listItemView.decreaseQuantityButton.setOnClickListener(new View.OnClickListener() {
             @Override
