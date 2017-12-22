@@ -19,6 +19,7 @@ Imagine that you are the Android developer at a merchandise startup, tasked with
 - SQLiteOpenHelper
 - AsyncTask Runnable
 - Coordinator layout
+- ViewHolder
 
 #### Features
 
