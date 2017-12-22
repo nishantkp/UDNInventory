@@ -54,7 +54,16 @@ public class ItemCursorAdapter extends CursorAdapter {
      */
     @Override
     public View newView(Context context, Cursor cursor, ViewGroup parent) {
-        return LayoutInflater.from(context).inflate(R.layout.list_item, parent, false);
+        View view = LayoutInflater.from(context).inflate(R.layout.list_item, parent, false);
+        ViewHolder viewHolder = new ViewHolder();
+        // Find the appropriate views from res/layout/list_item.xml
+        viewHolder.itemNameTextView = view.findViewById(R.id.list_item_item_name);
+        viewHolder.itemQuantityTextView = view.findViewById(R.id.list_item_item_quantity);
+        viewHolder.itemPriceTextView = view.findViewById(R.id.list_item_item_price);
+        viewHolder.itemCategoryTextView = view.findViewById(R.id.list_item_item_category);
+        viewHolder.decreaseQuantityButton = view.findViewById(R.id.list_item_item_decrease_quantity_button);
+        view.setTag(viewHolder);
+        return view;
     }
 
     /**
@@ -69,11 +78,9 @@ public class ItemCursorAdapter extends CursorAdapter {
     @SuppressLint("SetTextI18n")
     @Override
     public void bindView(final View view, Context context, final Cursor cursor) {
-        // Find the appropriate TextViews from res/layout/list_item.xml
-        TextView itemNameTextView = view.findViewById(R.id.list_item_item_name);
-        TextView itemPriceTextView = view.findViewById(R.id.list_item_item_price);
-        final TextView itemQuantityTextView = view.findViewById(R.id.list_item_item_quantity);
-        TextView itemCategoryTextView = view.findViewById(R.id.list_item_item_category);
+        // ViewHolder design pattern so we do not have to call findViewById every time
+        // we populate the list item
+        final ViewHolder listItemView = (ViewHolder) view.getTag();
 
         // Find the columns of item attributes that we are interested in
         int nameColumnIndex = cursor.getColumnIndex(ItemEntry.COLUMN_ITEM_NAME);
@@ -92,25 +99,28 @@ public class ItemCursorAdapter extends CursorAdapter {
         // If item quantity is below specified limit warn user by changing textColor of quantity
         // about low inventory
         if (itemQuantity > 0 && itemQuantity < 20) {
-            itemQuantityTextView.setTextColor(ContextCompat.getColor(mContext, R.color.quantityValueBelowLimit));
+            listItemView.itemQuantityTextView
+                    .setTextColor(ContextCompat.getColor(mContext, R.color.quantityValueBelowLimit));
         } else if (itemQuantity == 0) {
             // If item quantity is 0 warn user by changing textColor
-            itemQuantityTextView.setTextColor(ContextCompat.getColor(mContext, R.color.quantityValueZero));
+            listItemView.itemQuantityTextView
+                    .setTextColor(ContextCompat.getColor(mContext, R.color.quantityValueZero));
         } else {
-            itemQuantityTextView.setTextColor(ContextCompat.getColor(mContext, R.color.primaryTextColor));
+            listItemView.itemQuantityTextView
+                    .setTextColor(ContextCompat.getColor(mContext, R.color.primaryTextColor));
         }
 
-        // Update the TextViews with the current item
-        itemNameTextView.setText(itemName);
-        itemPriceTextView.setText("$ " + itemPrice);
-        itemQuantityTextView.setText(String.valueOf(itemQuantity));
+        // Update the TextViews with the current item details
+        listItemView.itemNameTextView.setText(itemName);
+        listItemView.itemPriceTextView.setText("$ " + itemPrice);
+        listItemView.itemQuantityTextView.setText(String.valueOf(itemQuantity));
 
         // Update the item category TextView if the category present
-        if(TextUtils.isEmpty(itemCategory)){
-            itemCategoryTextView.setVisibility(View.GONE);
+        if (TextUtils.isEmpty(itemCategory)) {
+            listItemView.itemCategoryTextView.setVisibility(View.GONE);
         } else {
-            itemCategoryTextView.setVisibility(View.VISIBLE);
-            itemCategoryTextView.setText(itemCategory);
+            listItemView.itemCategoryTextView.setVisibility(View.VISIBLE);
+            listItemView.itemCategoryTextView.setText(itemCategory);
         }
 
         // Append id of a row in table with {@link ItemEntry#CONTENT_URI} to generate a appropriate
@@ -120,13 +130,13 @@ public class ItemCursorAdapter extends CursorAdapter {
         // Find the button for decreasing the quantity in ListView with id : list_item_item_decrease_quantity_button
         // As button doesn't work on ListView, we have to set on click listener on decrease quantity
         // in Adapter view
-        Button decreaseQuantityButton = view.findViewById(R.id.list_item_item_decrease_quantity_button);
+        // Button decreaseQuantityButton = view.findViewById(R.id.list_item_item_decrease_quantity_button);
         // Attach a listener to button
-        decreaseQuantityButton.setOnClickListener(new View.OnClickListener() {
+        listItemView.decreaseQuantityButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 // Get the item quantity and trim the leading and trailing white spaces
-                String itemQuantityString = itemQuantityTextView.getText().toString().trim();
+                String itemQuantityString = listItemView.itemQuantityTextView.getText().toString().trim();
                 // Convert the string into Integer
                 Integer itemQuantity = Integer.parseInt(itemQuantityString);
                 // Decrease the value of quantity by 1 as long as it remains greater that 0
@@ -137,7 +147,7 @@ public class ItemCursorAdapter extends CursorAdapter {
                 // If item quantity is zero, make a snackBar and for ordering an item
                 if (itemQuantity == 0) {
                     // Change the color of text to warn user
-                    itemQuantityTextView.setTextColor(ContextCompat.getColor(mContext, R.color.quantityValueZero));
+                    listItemView.itemQuantityTextView.setTextColor(ContextCompat.getColor(mContext, R.color.quantityValueZero));
 
                     // Make a snackBar to show message for making an order and also show
                     // action button for making an order
@@ -176,8 +186,21 @@ public class ItemCursorAdapter extends CursorAdapter {
                 });
 
                 // Set the text in quantity field
-                itemQuantityTextView.setText(String.valueOf(itemQuantity));
+                listItemView.itemQuantityTextView.setText(String.valueOf(itemQuantity));
             }
         });
+    }
+
+    /**
+     * ViewHolder for list item in res/layout/list_item.xml
+     * View holder that cashes the views so we do not need to use findViewById every time
+     * So scrolling of list view becomes more smooth
+     */
+    private static class ViewHolder {
+        private TextView itemNameTextView;
+        private TextView itemQuantityTextView;
+        private TextView itemPriceTextView;
+        private TextView itemCategoryTextView;
+        private Button decreaseQuantityButton;
     }
 }
